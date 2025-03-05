@@ -1,9 +1,8 @@
 package utez.edu.ApiRestEventFlow.assignment.model;
 
 import jakarta.persistence.*;
-import utez.edu.ApiRestEventFlow.event.model.Event;
+import utez.edu.ApiRestEventFlow.activity.model.Activity;
 import utez.edu.ApiRestEventFlow.user.model.User;
-import utez.edu.ApiRestEventFlow.workshop.model.Workshop;
 
 @Entity
 @Table(name = "assignment")
@@ -14,23 +13,22 @@ public class Assignment {
     @Column(name = "assignment_id")
     private Long id;
 
-    // Relación Many-to-One con User
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false) // Columna que almacena la clave foránea de User
-    private User user; // Varias asignaciones pueden pertenecer a un usuario
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user; // Cambiado de "assignedUser" a "user"
 
-    // Relación Many-to-One con Event
     @ManyToOne
-    @JoinColumn(name = "event_id", nullable = false) // Columna que almacena la clave foránea de Event
-    private Event event; // Varias asignaciones pueden estar vinculadas a un evento
-
-    // Relación Many-to-One con Workshop
-    @ManyToOne
-    @JoinColumn(name = "workshop_id", nullable = false) // Columna que almacena la clave foránea de Workshop
-    private Workshop workshop; // Varias asignaciones pueden estar vinculadas a un taller
+    @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", nullable = false)
+    private Activity activity;
 
     // Constructor vacío
     public Assignment() {}
+
+    // Constructor con parámetros
+    public Assignment(User user, Activity activity) {
+        this.user = user;
+        this.activity = activity;
+    }
 
     // Getters y Setters
     public Long getId() {
@@ -49,19 +47,11 @@ public class Assignment {
         this.user = user;
     }
 
-    public Event getEvent() {
-        return event;
+    public Activity getActivity() {
+        return activity;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-    public Workshop getWorkshop() {
-        return workshop;
-    }
-
-    public void setWorkshop(Workshop workshop) {
-        this.workshop = workshop;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 }
