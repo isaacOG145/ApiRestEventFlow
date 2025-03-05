@@ -1,78 +1,30 @@
 package utez.edu.ApiRestEventFlow.user.model;
 
-import jakarta.persistence.*;
+
 import utez.edu.ApiRestEventFlow.Role.Role;
-import utez.edu.ApiRestEventFlow.assignment.model.Assignment;
 
 import java.sql.Date;
-import java.util.List;
 
-@Entity
-@Table(name = "user")
-public class User {
+public class UserDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long id;
-
-    @Column(name = "name", columnDefinition = "VARCHAR(50)")
     private String name;
-
-    @Column(name = "last_name", columnDefinition = "VARCHAR(100)")
     private String lastName;
-
-    @Column(name = "email", columnDefinition = "VARCHAR(50)")
     private String email;
-
-    @Column(name = "phone", columnDefinition = "VARCHAR(10)")
     private String phone;
-
-    @Column(name = "password", columnDefinition = "VARCHAR(255)")
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", columnDefinition = "VARCHAR(10)")
     private Role role;
-
-    @Column(name = "code", columnDefinition = "VARCHAR(10)")
     private String code;
-
-    @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
-
-    //admin
-    @Column(name = "company", columnDefinition = "VARCHAR(50)")
     private String company;
-
-    //checador
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Assignment> assignments;
-
-    @ManyToOne
-    @JoinColumn(name = "sent_by_user_id", referencedColumnName = "user_id")
-    private User sentByUser;
-
-    //usuario
-    @Column(name ="gender", columnDefinition = "VARCHAR(50)")
     private String gender;
-
-    @Column(name = "birthday", columnDefinition = "DATE")
     private Date birthday;
-
-    @Column(name = "address", columnDefinition = "VARCHAR(100)")
     private String address;
-
-    @Column(name = "how_found", columnDefinition = "VARCHAR(50)")
     private String howFound;
-
-    @Column(name = "job", columnDefinition = "VARCHAR(50)")
     private String job;
-
-    @Column(name = "work_place", columnDefinition = "VARCHAR(50)")
     private String workPlace;
 
-    public User() {}
+    public UserDTO() {}
 
     public Long getId() {
         return id;
@@ -146,14 +98,6 @@ public class User {
         this.status = status;
     }
 
-    public User getSentByUser() {
-        return sentByUser;
-    }
-
-    public void setSentByUser(User sentByUser) {
-        this.sentByUser = sentByUser;
-    }
-
     public String getCompany() {
         return company;
     }
@@ -210,8 +154,12 @@ public class User {
         this.workPlace = workPlace;
     }
 
-    // Método para validar si el usuario que envía tiene el rol adecuado
-    public boolean canSendUser(Role requiredRole) {
-        return this.role == requiredRole;
+    public interface Register {
+    }
+
+    public interface Modify {
+    }
+
+    public interface ChangeStatus {
     }
 }
