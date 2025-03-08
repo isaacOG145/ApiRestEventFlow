@@ -8,7 +8,7 @@ import java.sql.Date;
 
 public class UserDTO {
 
-    @NotBlank(groups = {ChangeStatus.class}, message = "El ID es obligatorio")
+    @NotNull(groups = {ChangeStatus.class}, message = "El ID es obligatorio")
     private Long id;
     @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El nombre es obligatorio")
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
