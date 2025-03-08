@@ -8,7 +8,7 @@ import java.sql.Date;
 
 public class UserDTO {
 
-    @NotNull(groups = {ChangeStatus.class}, message = "El ID es obligatorio")
+    @NotNull(groups = {ChangeStatus.class, Modify.class, UpdatePassword.class}, message = "El ID es obligatorio")
     private Long id;
     @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El nombre es obligatorio")
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
@@ -19,10 +19,10 @@ public class UserDTO {
     @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El correo electrónico es obligatorio")
     @Email(message = "El correo electrónico no es válido")
     private String email;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El teléfono es obligatorio")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, Modify.class}, message = "El teléfono es obligatorio")
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "El teléfono no es válido")
     private String phone;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "La contraseña es obligatoria")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class,UpdatePassword.class}, message = "La contraseña es obligatoria")
     @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String password;
     private Role role;
@@ -184,6 +184,10 @@ public class UserDTO {
     public interface RegisterChecker {}
 
     public interface Modify {
+    }
+
+    public interface UpdatePassword {
+
     }
 
     public interface ChangeStatus {

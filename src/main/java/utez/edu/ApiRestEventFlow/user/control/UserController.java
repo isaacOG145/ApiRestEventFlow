@@ -44,6 +44,16 @@ public class UserController {
         return userService.saveChecker(userDTO);
     }
 
+    @PutMapping("/updateUser")
+    public ResponseEntity<Message> updateUser(@Validated(UserDTO.Modify.class)@RequestBody UserDTO userDTO) {
+        return userService.updateUser(userDTO);
+    }
+
+    @PutMapping("/updatePassword")
+    public ResponseEntity<Message> updatePassword(@Validated(UserDTO.UpdatePassword.class)@RequestBody UserDTO userDTO) {
+        return userService.updatePassword(userDTO);
+    }
+
     @PutMapping("/change-status")
     public ResponseEntity<Message> changeStatus(@Validated(UserDTO.ChangeStatus.class) @RequestBody UserDTO userDTO) {
         return userService.changeStatus(userDTO);
