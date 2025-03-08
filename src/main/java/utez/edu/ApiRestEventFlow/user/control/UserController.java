@@ -2,6 +2,7 @@ package utez.edu.ApiRestEventFlow.user.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import utez.edu.ApiRestEventFlow.user.model.UserDTO;
 import utez.edu.ApiRestEventFlow.utils.Message;
@@ -18,19 +19,36 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/findAll")
     public ResponseEntity<Message> getAllUsers() {
         return userService.findAll();
     }
 
-    @GetMapping("/allAdmins")
+    @GetMapping("/findAllAdmins")
     public ResponseEntity<Message> getAllAdmins() {
         return userService.findAllAdmins();
     }
 
+    @GetMapping("/findByBoss")
+    public ResponseEntity<Message> getByBoss(@Validated @RequestBody UserDTO userDTO) {
+        return userService.findByBoss(userDTO);
+    }
+
     @PostMapping("/saveAdmin")
-    public ResponseEntity<Message> saveAdmin(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<Message> saveAdmin(@Validated(UserDTO.RegisterAdmin.class)@RequestBody UserDTO userDTO) {
         return userService.saveAdmin(userDTO);
     }
+
+    @PostMapping("/saveChecker")
+    public  ResponseEntity<Message> saveChecker(@Validated(UserDTO.RegisterChecker.class)@RequestBody UserDTO userDTO) {
+        return userService.saveChecker(userDTO);
+    }
+
+    @PutMapping("/change-status")
+    public ResponseEntity<Message> changeStatus(@Validated(UserDTO.ChangeStatus.class) @RequestBody UserDTO userDTO) {
+        return userService.changeStatus(userDTO);
+    }
+
+
 
 }

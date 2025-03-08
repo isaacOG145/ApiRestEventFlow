@@ -1,21 +1,34 @@
 package utez.edu.ApiRestEventFlow.user.model;
 
 
+import jakarta.validation.constraints.*;
 import utez.edu.ApiRestEventFlow.Role.Role;
 
 import java.sql.Date;
 
 public class UserDTO {
 
+    @NotBlank(groups = {ChangeStatus.class}, message = "El ID es obligatorio")
     private Long id;
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El nombre es obligatorio")
+    @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
     private String name;
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El apellido es obligatorio")
+    @Size(max = 50, message = "Los apellidos no puede tener más de 100 caracteres")
     private String lastName;
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El correo electrónico es obligatorio")
+    @Email(message = "El correo electrónico no es válido")
     private String email;
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El teléfono es obligatorio")
+    @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "El teléfono no es válido")
     private String phone;
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "La contraseña es obligatoria")
+    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String password;
     private Role role;
     private String code;
     private boolean status;
+    @NotBlank(groups = {RegisterAdmin.class}, message = "El nombre de la compañia es obligatorio")
     private String company;
     private String gender;
     private Date birthday;
@@ -23,6 +36,9 @@ public class UserDTO {
     private String howFound;
     private String job;
     private String workPlace;
+
+    @NotNull(message = "El usuario que registra al checador es obligatorio")
+    private User sentByUser;
 
     public UserDTO() {}
 
@@ -154,8 +170,18 @@ public class UserDTO {
         this.workPlace = workPlace;
     }
 
-    public interface Register {
+    public User getSentByUser() {
+        return sentByUser;
     }
+
+    public void setSentByUser(User sentByUser) {
+        this.sentByUser = sentByUser;
+    }
+
+    public interface RegisterAdmin {
+    }
+
+    public interface RegisterChecker {}
 
     public interface Modify {
     }
