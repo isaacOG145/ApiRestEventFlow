@@ -17,6 +17,7 @@ public class ActivityDTO {
     private Date date;
     private LocalTime time;
     private TypeActivity typeActivity;
+    private Activity fromActivity;
 
     //faltan las imagenes
 
@@ -94,5 +95,13 @@ public class ActivityDTO {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Activity getFromActivity() {
+        return fromActivity;
+    }
+
+    public void setFromActivity(Activity fromActivity) {
+        this.fromActivity = fromActivity;
     }
 }

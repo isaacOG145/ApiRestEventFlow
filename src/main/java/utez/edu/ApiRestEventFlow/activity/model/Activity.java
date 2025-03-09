@@ -42,6 +42,9 @@ public class Activity {
     @Column(name = "image_path", columnDefinition = "VARCHAR(255)")
     private List<String> imagePaths = new ArrayList<>();
     * */
+    @ManyToOne
+    @JoinColumn(name = "from_activity", referencedColumnName = "activity_id")
+    private Activity fromActivity;
 
 
     @Enumerated(EnumType.STRING)
@@ -134,5 +137,13 @@ public class Activity {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Activity getFromActivity() {
+        return fromActivity;
+    }
+
+    public void setFromActivity(Activity fromActivity) {
+        this.fromActivity = fromActivity;
     }
 }
