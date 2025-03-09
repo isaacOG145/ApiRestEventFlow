@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import utez.edu.ApiRestEventFlow.Role.Role;
@@ -23,11 +24,13 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     private void validateEmailAndPhone(UserDTO userDTO) {
@@ -103,7 +106,7 @@ public class UserService {
             newUser.setLastName(userDTO.getLastName());
             newUser.setEmail(userDTO.getEmail());
             newUser.setPhone(userDTO.getPhone());
-            newUser.setPassword(userDTO.getPassword());
+            newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             newUser.setRole(Role.ADMIN);
             newUser.setCompany(userDTO.getCompany());
             newUser.setStatus(true);
@@ -133,7 +136,7 @@ public class UserService {
             newUser.setLastName(userDTO.getLastName());
             newUser.setEmail(userDTO.getEmail());
             newUser.setPhone(userDTO.getPhone());
-            newUser.setPassword(userDTO.getPassword());
+            newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             newUser.setRole(Role.CHECKER);
             newUser.setStatus(true);
             newUser.setSentByUser(sentByUser);
@@ -178,7 +181,7 @@ public class UserService {
                 throw new ValidationException(ErrorMessages.SAME_PASSWORD);
             }
 
-            user.setPassword(userDTO.getPassword());
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
             user = userRepository.saveAndFlush(user);
 
