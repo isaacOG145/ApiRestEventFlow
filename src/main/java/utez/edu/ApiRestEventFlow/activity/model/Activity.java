@@ -20,7 +20,7 @@ public class Activity {
 
     @ManyToOne
     @JoinColumn(name = "owner_activity", referencedColumnName = "user_id")
-    private User ownerActivity; // Renombrado para ser más descriptivo
+    private User ownerActivity;
 
     @Column(name = "speaker", columnDefinition = "VARCHAR(150)")
     private String speaker;
@@ -36,11 +36,13 @@ public class Activity {
 
     @Column(name = "time", columnDefinition = "TIME")
     private LocalTime time; // Usado solo para talleres
-
-    @ElementCollection
+    /*
+    *  @ElementCollection
     @CollectionTable(name = "activity_images", joinColumns = @JoinColumn(name = "activity_id"))
     @Column(name = "image_path", columnDefinition = "VARCHAR(255)")
     private List<String> imagePaths = new ArrayList<>();
+    * */
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_activity", columnDefinition = "VARCHAR(10)")
@@ -108,14 +110,15 @@ public class Activity {
     public void setTime(LocalTime time) {
         this.time = time;
     }
-
-    public List<String> getImagePaths() {
+    /*
+    * public List<String> getImagePaths() {
         return imagePaths;
     }
 
     public void setImagePaths(List<String> imagePaths) {
         this.imagePaths = imagePaths;
     }
+    * */
 
     public TypeActivity getTypeActivity() {
         return typeActivity;
