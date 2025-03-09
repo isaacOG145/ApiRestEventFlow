@@ -15,9 +15,14 @@ public class ErrorMessages {
     public static final String ACTIVITY_NOT_FOUND = "No se encontro la actividad";
     public static final String ACTIVITIES_NOT_FOUND = "No se encontraron actividades";
     public static final String IS_NOT_EVENT = "La actividad no es un evento";
+    public static final String IS_NOT_WORKSHOP = "La actividad no es un evento";
     //sucessful
     public static final String SUCCESSFUL_REGISTRATION = "Regitro exitoso";
     public static final String SUCCESFUL_UPDATE = "Actualizacion exitosa";
     public static final String SUCCESFUL_CHANGE_STATUS = "Se ha actualizado el estado a ";
     public static final String SUCCESSFUL_PASSWORD_UPDATE = "Contraseña actualizada exitosamente";
+
+    //dto
+    public static final String ID_REQUIRED = "El ID es obligatorio";
+    public static final String NAME_REQUIRED = "El nombre es obligatorio";
 }

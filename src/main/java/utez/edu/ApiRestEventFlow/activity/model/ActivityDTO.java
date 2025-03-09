@@ -1,7 +1,12 @@
 package utez.edu.ApiRestEventFlow.activity.model;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
+import utez.edu.ApiRestEventFlow.user.model.UserDTO;
+import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -9,14 +14,28 @@ import java.time.LocalTime;
 
 public class ActivityDTO {
 
+    @NotNull(groups = {ModifyEvent.class, ChangeStatus.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
+    @NotNull(groups = {RegisterEvent.class}, message = "El dueño de la actividad es obligatorio")
     private User ownerActivity;
+    @NotBlank(groups = {RegisterWorkshop.class}, message = "El nombre del ponente es obligatorio")
     private String speaker;
+    @NotBlank(groups = {RegisterEvent.class, ModifyEvent.class, RegisterWorkshop.class, ModifyWorkshop.class},
+            message = ErrorMessages.NAME_REQUIRED)
     private String name;
+    @NotBlank(groups = {RegisterEvent.class, ModifyEvent.class, RegisterWorkshop.class, ModifyWorkshop.class},
+            message = "La descripción es obligatoria")
     private String description;
+
+    @NotNull(groups = {RegisterWorkshop.class, ModifyWorkshop.class}, message = "El cupo es obligatorio")
+    private int quota;
+
+    @NotNull(groups = {RegisterEvent.class, ModifyEvent.class}, message = "La fecha es obligatoria")
     private Date date;
+    @NotNull(groups = {RegisterWorkshop.class, ModifyWorkshop.class}, message = "La hora es obligatoria")
     private LocalTime time;
     private TypeActivity typeActivity;
+    @NotNull(groups = {RegisterWorkshop.class}, message = "El ID del evento es obligatorio")
     private Activity fromActivity;
 
     //faltan las imagenes
@@ -65,6 +84,14 @@ public class ActivityDTO {
         this.description = description;
     }
 
+    public int getQuota() {
+        return quota;
+    }
+
+    public void setQuota(int quota) {
+        this.quota = quota;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -104,4 +131,14 @@ public class ActivityDTO {
     public void setFromActivity(Activity fromActivity) {
         this.fromActivity = fromActivity;
     }
+
+    public interface RegisterEvent{}
+
+    public interface RegisterWorkshop{}
+
+    public interface ModifyEvent{}
+
+    public interface ModifyWorkshop{}
+
+    public interface ChangeStatus{}
 }

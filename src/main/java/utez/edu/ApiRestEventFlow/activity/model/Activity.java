@@ -31,6 +31,9 @@ public class Activity {
     @Column(name = "description", columnDefinition = "VARCHAR(100)")
     private String description;
 
+    @Column(name ="quota", columnDefinition = "NUMERIC")
+    private int quota;
+
     @Column(name = "date", columnDefinition = "DATE")
     private Date date; // Usado solo para eventos
 
@@ -96,6 +99,14 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public void setQuota(int quota) {
+        this.quota = quota;
     }
 
     public Date getDate() {
