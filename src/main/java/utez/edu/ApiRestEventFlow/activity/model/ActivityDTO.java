@@ -1,66 +1,43 @@
 package utez.edu.ApiRestEventFlow.activity.model;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
+import utez.edu.ApiRestEventFlow.user.model.UserDTO;
+import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
-@Table(name = "activity")
-public class Activity {
+public class ActivityDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "activity_id")
+    @NotNull(groups = {ModifyEvent.class, ChangeStatus.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_activity", referencedColumnName = "user_id")
+    @NotNull(groups = {RegisterEvent.class}, message = "El dueño de la actividad es obligatorio")
     private User ownerActivity;
-
-    @Column(name = "speaker", columnDefinition = "VARCHAR(150)")
+    @NotBlank(groups = {RegisterWorkshop.class}, message = "El nombre del ponente es obligatorio")
     private String speaker;
-
-    @Column(name = "name", columnDefinition = "VARCHAR(50)")
+    @NotBlank(groups = {RegisterEvent.class,RegisterWorkshop.class}, message = ErrorMessages.NAME_REQUIRED)
     private String name;
-
-    @Column(name = "description", columnDefinition = "VARCHAR(100)")
+    @NotBlank(groups = {RegisterEvent.class, RegisterWorkshop.class}, message = "La descripción es obligatoria")
     private String description;
-
-    @Column(name ="quota", columnDefinition = "NUMERIC")
+    @NotNull(groups = {RegisterWorkshop.class}, message = "El cupo es obligatorio")
     private Integer quota;
-
-    @Column(name = "date", columnDefinition = "DATE")
-    private Date date; // Usado solo para eventos
-
-    @Column(name = "time", columnDefinition = "TIME")
-    private LocalTime time; // Usado solo para talleres
-    /*
-    *  @ElementCollection
-    @CollectionTable(name = "activity_images", joinColumns = @JoinColumn(name = "activity_id"))
-    @Column(name = "image_path", columnDefinition = "VARCHAR(255)")
-    private List<String> imagePaths = new ArrayList<>();
-    * */
-    @ManyToOne
-    @JoinColumn(name = "from_activity", referencedColumnName = "activity_id")
+    @NotNull(groups = {RegisterEvent.class}, message = "La fecha es obligatoria")
+    private Date date;
+    @NotNull(groups = {RegisterWorkshop.class}, message = "La hora es obligatoria")
+    private LocalTime time;
+    private TypeActivity typeActivity;
+    @NotNull(groups = {RegisterWorkshop.class}, message = "El ID del evento es obligatorio")
     private Activity fromActivity;
 
+    //faltan las imagenes
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type_activity", columnDefinition = "VARCHAR(10)")
-    private TypeActivity typeActivity; // EVENT o WORKSHOP
-
-    @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
     private boolean status;
 
-    // Constructor vacío
-    public Activity() {}
+    public ActivityDTO() {}
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -124,15 +101,6 @@ public class Activity {
     public void setTime(LocalTime time) {
         this.time = time;
     }
-    /*
-    * public List<String> getImagePaths() {
-        return imagePaths;
-    }
-
-    public void setImagePaths(List<String> imagePaths) {
-        this.imagePaths = imagePaths;
-    }
-    * */
 
     public TypeActivity getTypeActivity() {
         return typeActivity;
@@ -157,4 +125,14 @@ public class Activity {
     public void setFromActivity(Activity fromActivity) {
         this.fromActivity = fromActivity;
     }
+
+    public interface RegisterEvent{}
+
+    public interface RegisterWorkshop{}
+
+    public interface ModifyEvent{}
+
+    public interface ModifyWorkshop{}
+
+    public interface ChangeStatus{}
 }

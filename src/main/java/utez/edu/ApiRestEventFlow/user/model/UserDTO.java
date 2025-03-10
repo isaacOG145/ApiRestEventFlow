@@ -3,14 +3,15 @@ package utez.edu.ApiRestEventFlow.user.model;
 
 import jakarta.validation.constraints.*;
 import utez.edu.ApiRestEventFlow.Role.Role;
+import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.Date;
 
 public class UserDTO {
 
-    @NotNull(groups = {ChangeStatus.class, Modify.class, UpdatePassword.class}, message = "El ID es obligatorio")
+    @NotNull(groups = {ChangeStatus.class, Modify.class, UpdatePassword.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El nombre es obligatorio")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = ErrorMessages.NAME_REQUIRED)
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
     private String name;
     @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El apellido es obligatorio")
@@ -36,8 +37,7 @@ public class UserDTO {
     private String howFound;
     private String job;
     private String workPlace;
-
-    @NotNull(message = "El usuario que registra al checador es obligatorio")
+    @NotNull(groups ={RegisterChecker.class}, message = "El id del administrador es requerido")
     private User sentByUser;
 
     public UserDTO() {}
