@@ -32,7 +32,7 @@ public class Activity {
     private String description;
 
     @Column(name ="quota", columnDefinition = "NUMERIC")
-    private int quota;
+    private Integer quota;
 
     @Column(name = "date", columnDefinition = "DATE")
     private Date date; // Usado solo para eventos
@@ -101,11 +101,11 @@ public class Activity {
         this.description = description;
     }
 
-    public int getQuota() {
+    public Integer getQuota() {
         return quota;
     }
 
-    public void setQuota(int quota) {
+    public void setQuota(Integer quota) {
         this.quota = quota;
     }
 

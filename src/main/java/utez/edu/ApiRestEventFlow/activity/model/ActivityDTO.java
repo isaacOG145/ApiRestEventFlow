@@ -26,7 +26,7 @@ public class ActivityDTO {
     private String description;
 
     //@NotNull(groups = {RegisterWorkshop.class, ModifyWorkshop.class}, message = "El cupo es obligatorio")
-    private int quota;
+    private Integer quota;
 
     //@NotNull(groups = {RegisterEvent.class, ModifyEvent.class}, message = "La fecha es obligatoria")
     private Date date;
@@ -82,11 +82,11 @@ public class ActivityDTO {
         this.description = description;
     }
 
-    public int getQuota() {
+    public Integer getQuota() {
         return quota;
     }
 
-    public void setQuota(int quota) {
+    public void setQuota(Integer quota) {
         this.quota = quota;
     }
 

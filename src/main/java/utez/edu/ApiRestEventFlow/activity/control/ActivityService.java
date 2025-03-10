@@ -197,21 +197,38 @@ public class ActivityService {
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> updateEvent(ActivityDTO activityDTO) {
         try {
+            // Buscar la actividad existente
             Activity activity = activityRepository.findById(activityDTO.getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
+
+            // Validar que la actividad sea un evento
             validateEvent(activity);
 
-            activity.setName(activityDTO.getName());
-            activity.setDescription(activityDTO.getDescription());
-            activity.setDate(activityDTO.getDate());
+            // Actualizar solo los campos que no son nulos en el DTO
+            if (activityDTO.getName() != null) {
+                activity.setName(activityDTO.getName());
+            }
+            if (activityDTO.getDescription() != null) {
+                activity.setDescription(activityDTO.getDescription());
+            }
+            if (activityDTO.getDate() != null) {
+                activity.setDate(activityDTO.getDate());
+            }
+            if (activityDTO.getSpeaker() != null) {
+                activity.setSpeaker(activityDTO.getSpeaker());
+            }
 
+            // Guardar la actividad actualizada
             activity = activityRepository.save(activity);
 
+            // Retornar respuesta exitosa
             return new ResponseEntity<>(new Message(activity, ErrorMessages.SUCCESFUL_UPDATE, TypesResponse.SUCCESS), HttpStatus.OK);
 
         } catch (ValidationException e) {
+            // Manejar excepciones de validación
             return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
+            // Manejar excepciones inesperadas
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -226,11 +243,23 @@ public class ActivityService {
             if (activityDTO.getQuota() < 1) {
                 throw new ValidationException("El cupo debe ser mayor a 0");
             }
+            if (activityDTO.getQuota() != null) {
+                activity.setQuota(activityDTO.getQuota());
+            }
 
-            activity.setName(activityDTO.getName());
-            activity.setDescription(activityDTO.getDescription());
-            activity.setQuota(activityDTO.getQuota());
-            activity.setDate(activityDTO.getDate());
+            if(activityDTO.getName() != null){
+                activity.setName(activityDTO.getName());
+            }
+            if(activityDTO.getDescription() != null){
+                activity.setDescription(activityDTO.getDescription());
+            }
+            if(activityDTO.getDate() != null){
+                activity.setDate(activityDTO.getDate());
+            }
+            if(activityDTO.getSpeaker() != null){
+                activity.setSpeaker(activityDTO.getSpeaker());
+            }
+
 
             activity = activityRepository.save(activity);
 
