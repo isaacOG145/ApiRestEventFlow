@@ -183,7 +183,7 @@ public class ActivityService {
             newActivity.setFromActivity(fromActivity);
             newActivity.setStatus(true);
 
-            activityRepository.save(newActivity);
+            newActivity = activityRepository.save(newActivity);
 
             return new ResponseEntity<>(new Message(newActivity, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
 
@@ -236,38 +236,46 @@ public class ActivityService {
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> updateWorkshop(ActivityDTO activityDTO) {
         try {
+            // Buscar la actividad existente
             Activity activity = activityRepository.findById(activityDTO.getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
+
+            // Validar que la actividad sea un taller
             validateWorkshop(activity);
 
-            if (activityDTO.getQuota() < 1) {
-                throw new ValidationException("El cupo debe ser mayor a 0");
-            }
+            // Verificar y actualizar el cupo si se proporciona
             if (activityDTO.getQuota() != null) {
+                if (activityDTO.getQuota() < 1) {
+                    throw new ValidationException("El cupo debe ser mayor a 0");
+                }
                 activity.setQuota(activityDTO.getQuota());
             }
 
-            if(activityDTO.getName() != null){
+            // Actualizar otros campos si se proporcionan
+            if (activityDTO.getName() != null) {
                 activity.setName(activityDTO.getName());
             }
-            if(activityDTO.getDescription() != null){
+            if (activityDTO.getDescription() != null) {
                 activity.setDescription(activityDTO.getDescription());
             }
-            if(activityDTO.getDate() != null){
-                activity.setDate(activityDTO.getDate());
+            if (activityDTO.getTime() != null) {
+                activity.setTime(activityDTO.getTime());
             }
-            if(activityDTO.getSpeaker() != null){
+            if (activityDTO.getSpeaker() != null) {
                 activity.setSpeaker(activityDTO.getSpeaker());
             }
 
-
+            // Guardar la actividad actualizada
             activity = activityRepository.save(activity);
 
+            // Retornar respuesta exitosa
             return new ResponseEntity<>(new Message(activity, ErrorMessages.SUCCESFUL_UPDATE, TypesResponse.SUCCESS), HttpStatus.OK);
 
         } catch (ValidationException e) {
+            // Manejar excepciones de validación
             return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
+            // Manejar excepciones inesperadas
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

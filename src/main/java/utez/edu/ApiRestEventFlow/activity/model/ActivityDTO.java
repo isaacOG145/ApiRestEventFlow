@@ -12,28 +12,24 @@ import java.time.LocalTime;
 
 public class ActivityDTO {
 
-    //@NotNull(groups = {ModifyEvent.class, ChangeStatus.class}, message = ErrorMessages.ID_REQUIRED)
+    @NotNull(groups = {ModifyEvent.class, ChangeStatus.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
-    //@NotNull(groups = {RegisterEvent.class}, message = "El dueño de la actividad es obligatorio")
+    @NotNull(groups = {RegisterEvent.class}, message = "El dueño de la actividad es obligatorio")
     private User ownerActivity;
-    //@NotBlank(groups = {RegisterWorkshop.class}, message = "El nombre del ponente es obligatorio")
+    @NotBlank(groups = {RegisterWorkshop.class}, message = "El nombre del ponente es obligatorio")
     private String speaker;
-    //@NotBlank(groups = {RegisterEvent.class, ModifyEvent.class, RegisterWorkshop.class, ModifyWorkshop.class},
-      //      message = ErrorMessages.NAME_REQUIRED)
+    @NotBlank(groups = {RegisterEvent.class,RegisterWorkshop.class}, message = ErrorMessages.NAME_REQUIRED)
     private String name;
-    //@NotBlank(groups = {RegisterEvent.class, ModifyEvent.class, RegisterWorkshop.class, ModifyWorkshop.class},
-      //      message = "La descripción es obligatoria")
+    @NotBlank(groups = {RegisterEvent.class, RegisterWorkshop.class}, message = "La descripción es obligatoria")
     private String description;
-
-    //@NotNull(groups = {RegisterWorkshop.class, ModifyWorkshop.class}, message = "El cupo es obligatorio")
+    @NotNull(groups = {RegisterWorkshop.class}, message = "El cupo es obligatorio")
     private Integer quota;
-
-    //@NotNull(groups = {RegisterEvent.class, ModifyEvent.class}, message = "La fecha es obligatoria")
+    @NotNull(groups = {RegisterEvent.class}, message = "La fecha es obligatoria")
     private Date date;
-    //@NotNull(groups = {RegisterWorkshop.class, ModifyWorkshop.class}, message = "La hora es obligatoria")
+    @NotNull(groups = {RegisterWorkshop.class}, message = "La hora es obligatoria")
     private LocalTime time;
     private TypeActivity typeActivity;
-    //@NotNull(groups = {RegisterWorkshop.class}, message = "El ID del evento es obligatorio")
+    @NotNull(groups = {RegisterWorkshop.class}, message = "El ID del evento es obligatorio")
     private Activity fromActivity;
 
     //faltan las imagenes

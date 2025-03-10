@@ -159,7 +159,9 @@ public class UserService {
 
             validateEmailAndPhone(userDTO);
 
-            user.setPhone(userDTO.getPhone());
+            if(userDTO.getPhone() != null) {
+                user.setPhone(userDTO.getPhone());
+            }
 
             user = userRepository.saveAndFlush(user);
 
