@@ -52,11 +52,14 @@ public class ActivityService {
         }
     }
 
-    private void validateFutureDate(Date date) {
-        if (!DateUtils.isFutureDate(date)) {
-            throw new ValidationException("La fecha debe ser futura");
-        }
-    }
+    //Esto no ha funcionado
+    /*
+    // private void validateFutureDate(Date date) {
+    //        if (!DateUtils.isFutureDate(date)) {
+    //            throw new ValidationException("La fecha debe ser futura");
+    //        }
+    //    }
+    // */
 
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findAll() {
@@ -135,8 +138,9 @@ public class ActivityService {
         try {
             User owner = userRepository.findById(activityDTO.getOwnerActivity().getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
+
             validateAdmin(owner);
-            validateFutureDate(activityDTO.getDate());
+
 
             Activity newActivity = new Activity();
             newActivity.setName(activityDTO.getName());
@@ -146,7 +150,7 @@ public class ActivityService {
             newActivity.setOwnerActivity(owner);
             newActivity.setStatus(true);
 
-            activityRepository.save(newActivity);
+            newActivity = activityRepository.save(newActivity);
 
             return new ResponseEntity<>(new Message(newActivity, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
 
@@ -162,6 +166,7 @@ public class ActivityService {
         try {
             Activity fromActivity = activityRepository.findById(activityDTO.getFromActivity().getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
+
             validateEvent(fromActivity);
 
             if (activityDTO.getQuota() < 1) {
@@ -195,7 +200,6 @@ public class ActivityService {
             Activity activity = activityRepository.findById(activityDTO.getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
             validateEvent(activity);
-            validateFutureDate(activityDTO.getDate());
 
             activity.setName(activityDTO.getName());
             activity.setDescription(activityDTO.getDescription());
@@ -255,7 +259,7 @@ public class ActivityService {
             String statusMessage = newStatus ? "Activo" : "Inactivo";
             String successMessage = ErrorMessages.SUCCESFUL_CHANGE_STATUS + statusMessage;
 
-            activity = activityRepository.save(activity);
+            activity = activityRepository.saveAndFlush(activity);
 
             return new ResponseEntity<>(new Message(activity, successMessage, TypesResponse.SUCCESS), HttpStatus.OK);
 

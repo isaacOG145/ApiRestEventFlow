@@ -30,38 +30,38 @@ public class ActivityController {
         return activityService.findAllEvents();
     }
 
-    @PostMapping("/findByOwner")
+    @GetMapping("/findByOwner")
     public ResponseEntity<Message> getByOwner(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.findByOwner(activityDTO);
     }
 
-    @PostMapping("/findByEvent")
+    @GetMapping("/findByEvent")
     public ResponseEntity<Message> getByEvent(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.findByFromActivity(activityDTO);
     }
 
     @PostMapping("/saveEvent")
-    public ResponseEntity<Message> saveEvent(@Validated(ActivityDTO.RegisterEvent.class) @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Message> saveEvent(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.saveEvent(activityDTO);
     }
 
     @PostMapping("/saveWorkshop")
-    public ResponseEntity<Message> saveWorkshop(@Validated(ActivityDTO.RegisterWorkshop.class) @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Message> saveWorkshop(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.saveWorkshop(activityDTO);
     }
 
     @PutMapping("/updateEvent")
-    public ResponseEntity<Message> updateEvent(@Validated(ActivityDTO.ModifyEvent.class) @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Message> updateEvent(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.updateEvent(activityDTO);
     }
 
     @PutMapping("/updateWorkshop")
-    public ResponseEntity<Message> updateWorkshop(@Validated(ActivityDTO.ModifyWorkshop.class) @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Message> updateWorkshop(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.updateWorkshop(activityDTO);
     }
 
     @PutMapping("/change-status")
-    public ResponseEntity<Message> changeStatus(@Validated(ActivityDTO.ChangeStatus.class) @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Message> changeStatus(@Validated @RequestBody ActivityDTO activityDTO) {
         return activityService.changeStatus(activityDTO);
     }
 }
