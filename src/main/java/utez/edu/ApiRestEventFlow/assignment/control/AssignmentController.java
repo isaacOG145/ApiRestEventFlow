@@ -18,6 +18,19 @@ public class AssignmentController {
         this.assignmentService = assignmentService;
     }
 
+    @GetMapping("/findAll")
+    public ResponseEntity<Message> getAll() {
+        return assignmentService.findAll();
+    }
+
+    @GetMapping("/findByActivity")
+    public ResponseEntity<Message> findByActivity(@Validated @RequestBody AssignmentDTO assignmentDTO) {
+        return assignmentService.findByEvent(assignmentDTO);
+    }
+
+
+
+
     @PostMapping("/saveAssignment")
     public ResponseEntity<Message> saveAssignment(@Validated @RequestBody AssignmentDTO assignmentDTO) {
         return assignmentService.saveAssignment(assignmentDTO);

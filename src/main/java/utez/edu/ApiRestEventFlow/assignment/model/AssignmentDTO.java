@@ -1,43 +1,42 @@
 package utez.edu.ApiRestEventFlow.assignment.model;
 
-import utez.edu.ApiRestEventFlow.activity.model.Activity;
-import utez.edu.ApiRestEventFlow.user.model.User;
-
 public class AssignmentDTO {
+    private Long assignmentId;
+    private Long userId;
+    private Long activityId;
 
-    private Long id;
-    private Activity activity;
-    private User user;
+    // Constructor vacío
+    public AssignmentDTO() {}
 
-    public AssignmentDTO(){}
-
-    public Long getId() {
-        return id;
+    // Constructor con parámetros
+    public AssignmentDTO(Long assignmentId, Long userId, Long activityId) {
+        this.assignmentId = assignmentId;
+        this.userId = userId;
+        this.activityId = activityId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // Getters y Setters
+    public Long getAssignmentId() {
+        return assignmentId;
     }
 
-    public Activity getActivity() {
-        return activity;
+    public void setAssignmentId(Long assignmentId) {
+        this.assignmentId = assignmentId;
     }
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
+    public Long getUserId() {
+        return userId;
     }
 
-    public User getUser() {
-        return user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public Long getActivityId() {
+        return activityId;
     }
 
-    public interface Register{}
-
-    public interface Modify{}
-
-    public interface ChangeStatus{}
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
+    }
 }
