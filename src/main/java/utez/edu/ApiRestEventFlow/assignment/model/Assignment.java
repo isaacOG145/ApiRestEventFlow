@@ -21,6 +21,10 @@ public class Assignment {
     @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", nullable = false)
     private Activity activity;
 
+    @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
+    private boolean status;
+
+
     public Assignment() {}
 
     public Assignment(User user, Activity activity) {
@@ -50,5 +54,13 @@ public class Assignment {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

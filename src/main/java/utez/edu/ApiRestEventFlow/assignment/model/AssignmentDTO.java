@@ -4,6 +4,7 @@ public class AssignmentDTO {
     private Long assignmentId;
     private Long userId;
     private Long activityId;
+    private boolean status;
 
     // Constructor vacío
     public AssignmentDTO() {}
@@ -30,6 +31,14 @@ public class AssignmentDTO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public Long getActivityId() {
