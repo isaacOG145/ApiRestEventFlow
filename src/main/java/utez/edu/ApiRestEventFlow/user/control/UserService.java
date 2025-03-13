@@ -111,7 +111,7 @@ public class UserService {
             newUser.setCompany(userDTO.getCompany());
             newUser.setStatus(true);
 
-            newUser = userRepository.saveAndFlush(newUser);
+            newUser = userRepository.save(newUser);
 
             return new ResponseEntity<>(new Message(newUser, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
         } catch (ValidationException e) {
@@ -140,6 +140,35 @@ public class UserService {
             newUser.setRole(Role.CHECKER);
             newUser.setStatus(true);
             newUser.setSentByUser(sentByUser);
+
+            newUser = userRepository.save(newUser);
+
+            return new ResponseEntity<>(new Message(newUser, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<Message> saveUser (UserDTO userDTO) {
+        try{
+            validateEmailAndPhone(userDTO);
+
+            User newUser = new User();
+            newUser.setName(userDTO.getName());
+            newUser.setLastName(userDTO.getLastName());
+            newUser.setEmail(userDTO.getEmail());
+            newUser.setPhone(userDTO.getPhone());
+            newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+            newUser.setRole(Role.USER);
+            newUser.setAddress(userDTO.getAddress());
+            newUser.setHowFound(userDTO.getHowFound());
+            newUser.setJob(userDTO.getJob());
+            newUser.setWorkPlace(userDTO.getWorkPlace());
+            newUser.setGender(userDTO.getGender());
+            newUser.setStatus(true);
 
             newUser = userRepository.saveAndFlush(newUser);
 

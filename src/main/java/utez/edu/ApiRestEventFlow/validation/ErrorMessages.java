@@ -15,6 +15,7 @@ public class ErrorMessages {
     public static final String INTERNAL_SERVER_ERROR = "Error interno del servidor";
     public static final String ACTIVITY_NOT_FOUND = "No se encontro la actividad";
     public static final String ACTIVITIES_NOT_FOUND = "No se encontraron actividades";
+    public static final String ASSIGNMENTS_NOT_FOUND = "No se encontraron asignaciones";
     public static final String IS_NOT_EVENT = "La actividad no es un evento";
     public static final String IS_NOT_WORKSHOP = "La actividad no es un evento";
     //sucessful
