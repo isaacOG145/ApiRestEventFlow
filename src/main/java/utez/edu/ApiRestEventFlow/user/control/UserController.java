@@ -44,6 +44,11 @@ public class UserController {
         return userService.saveChecker(userDTO);
     }
 
+    @PostMapping("/saveUser")
+    public ResponseEntity<Message> saveUser(@Validated(UserDTO.RegisterUser.class)@RequestBody UserDTO userDTO) {
+        return userService.saveUser(userDTO);
+    }
+
     @PutMapping("/updateUser")
     public ResponseEntity<Message> updateUser(@Validated(UserDTO.Modify.class)@RequestBody UserDTO userDTO) {
         return userService.updateUser(userDTO);
