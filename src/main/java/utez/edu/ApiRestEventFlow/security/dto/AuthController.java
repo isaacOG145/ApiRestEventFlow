@@ -12,6 +12,7 @@ import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserRepository;
 
 @RestController
+@CrossOrigin(origins = {"*"}, methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;

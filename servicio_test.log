@@ -1,22 +1,22 @@
-2025-03-11T21:51:46.570-06:00  INFO 24232 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 24232 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T21:51:46.574-06:00  INFO 24232 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T21:51:47.743-06:00  INFO 24232 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T21:51:47.799-06:00  INFO 24232 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 3 JPA repository interfaces.
-2025-03-11T21:51:48.161-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T21:51:48.172-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T21:51:48.172-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T21:51:48.212-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T21:51:48.212-06:00  INFO 24232 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1594 ms
-2025-03-11T21:51:48.302-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T21:51:48.343-06:00  INFO 24232 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T21:51:48.369-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T21:51:48.570-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T21:51:48.593-06:00  INFO 24232 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T21:51:48.946-06:00  INFO 24232 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a99c42c
-2025-03-11T21:51:48.947-06:00  INFO 24232 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T21:51:48.996-06:00  WARN 24232 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T21:51:48.997-06:00  WARN 24232 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T21:51:49.009-06:00  INFO 24232 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-03-17T08:20:21.647-06:00  INFO 17484 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 17484 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
+2025-03-17T08:20:21.650-06:00  INFO 17484 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-03-17T08:20:23.391-06:00  INFO 17484 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-17T08:20:23.449-06:00  INFO 17484 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 3 JPA repository interfaces.
+2025-03-17T08:20:23.831-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-17T08:20:23.841-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-17T08:20:23.841-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-17T08:20:23.881-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-17T08:20:23.881-06:00  INFO 17484 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2161 ms
+2025-03-17T08:20:23.970-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-17T08:20:24.013-06:00  INFO 17484 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-17T08:20:24.038-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-17T08:20:24.269-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-17T08:20:24.295-06:00  INFO 17484 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-17T08:20:24.705-06:00  INFO 17484 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11c3ce6a
+2025-03-17T08:20:24.706-06:00  INFO 17484 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-17T08:20:24.775-06:00  WARN 17484 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-17T08:20:24.776-06:00  WARN 17484 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-17T08:20:24.789-06:00  INFO 17484 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -24,39 +24,69 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-03-11T21:51:49.663-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T21:51:49.949-06:00  INFO 24232 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T21:51:50.246-06:00  INFO 24232 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T21:51:50.264-06:00  WARN 24232 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T21:51:50.582-06:00  INFO 24232 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T21:51:50.586-06:00  INFO 24232 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 4.325 seconds (process running for 4.902)
-2025-03-11T21:53:57.194-06:00  INFO 24232 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T21:53:57.195-06:00  INFO 24232 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T21:53:57.196-06:00  INFO 24232 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-03-11T22:39:30.337-06:00  INFO 24232 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T22:39:30.343-06:00  INFO 24232 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T22:39:30.348-06:00  INFO 24232 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:39:30.350-06:00  INFO 24232 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T22:39:30.354-06:00  INFO 24232 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-03-11T22:39:47.729-06:00  INFO 21560 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 21560 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T22:39:47.730-06:00  INFO 21560 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T22:39:48.251-06:00  INFO 21560 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T22:39:48.298-06:00  INFO 21560 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
-2025-03-11T22:39:48.686-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T22:39:48.696-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T22:39:48.696-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T22:39:48.740-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T22:39:48.740-06:00  INFO 21560 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 978 ms
-2025-03-11T22:39:48.826-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T22:39:48.874-06:00  INFO 21560 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T22:39:48.903-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T22:39:49.111-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T22:39:49.134-06:00  INFO 21560 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T22:39:49.432-06:00  INFO 21560 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@315b5913
-2025-03-11T22:39:49.433-06:00  INFO 21560 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T22:39:49.470-06:00  WARN 21560 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T22:39:49.470-06:00  WARN 21560 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T22:39:49.484-06:00  INFO 21560 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-03-17T08:20:25.501-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-17T08:20:25.956-06:00  INFO 17484 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:20:26.351-06:00  INFO 17484 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-03-17T08:20:26.376-06:00  WARN 17484 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-17T08:20:26.781-06:00  INFO 17484 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-17T08:20:26.787-06:00  INFO 17484 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 5.454 seconds (process running for 6.243)
+2025-03-17T08:21:06.838-06:00  INFO 17484 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-17T08:21:06.838-06:00  INFO 17484 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-17T08:21:06.839-06:00  INFO 17484 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-17T08:23:39.699-06:00  INFO 17484 --- [ApiRestEventFlow] [http-nio-8080-exec-6] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x030x8a0x890xde*W0x9c0xee0x870xa90x1b0xa0b0xd70xf30xfe0x01l0xae0xec0xc80xf0*{e0xd30x830xd30xe4X0x83]A ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:23:39.699-06:00  INFO 17484 --- [ApiRestEventFlow] [http-nio-8080-exec-5] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x0330xda0x07#0x91f0x010xdc#M0xfa0x900xcd0xc300xbeW0x95]|0xe0(0xa5Lr0xf30xc6y0xe10x00S` ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:26:32.029-06:00  INFO 17484 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-17T08:26:32.035-06:00  INFO 17484 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-17T08:26:32.038-06:00  INFO 17484 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:26:32.039-06:00  INFO 17484 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-17T08:26:32.045-06:00  INFO 17484 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-17T08:28:24.701-06:00  INFO 27336 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 27336 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
+2025-03-17T08:28:24.702-06:00  INFO 27336 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-03-17T08:28:25.109-06:00  INFO 27336 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-17T08:28:25.151-06:00  INFO 27336 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2025-03-17T08:28:25.457-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-17T08:28:25.472-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-17T08:28:25.472-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-17T08:28:25.509-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-17T08:28:25.509-06:00  INFO 27336 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 775 ms
+2025-03-17T08:28:25.588-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-17T08:28:25.636-06:00  INFO 27336 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-17T08:28:25.660-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-17T08:28:25.852-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-17T08:28:25.875-06:00  INFO 27336 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-17T08:28:26.156-06:00  INFO 27336 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@39514976
+2025-03-17T08:28:26.157-06:00  INFO 27336 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-17T08:28:26.188-06:00  WARN 27336 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-17T08:28:26.189-06:00  WARN 27336 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-17T08:28:26.200-06:00  INFO 27336 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -64,39 +94,66 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-03-11T22:39:50.265-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T22:39:50.514-06:00  INFO 21560 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:39:50.801-06:00  INFO 21560 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T22:39:50.818-06:00  WARN 21560 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T22:39:51.111-06:00  INFO 21560 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T22:39:51.116-06:00  INFO 21560 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.67 seconds (process running for 4.135)
-2025-03-11T22:48:12.264-06:00  INFO 21560 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T22:48:12.265-06:00  INFO 21560 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T22:48:12.266-06:00  INFO 21560 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-03-11T22:50:57.045-06:00  INFO 21560 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T22:50:57.051-06:00  INFO 21560 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T22:50:57.054-06:00  INFO 21560 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:50:57.055-06:00  INFO 21560 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T22:50:57.059-06:00  INFO 21560 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-03-11T22:50:59.123-06:00  INFO 16568 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 16568 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T22:50:59.125-06:00  INFO 16568 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T22:50:59.523-06:00  INFO 16568 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T22:50:59.563-06:00  INFO 16568 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
-2025-03-11T22:50:59.892-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T22:50:59.901-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T22:50:59.901-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T22:50:59.942-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T22:50:59.942-06:00  INFO 16568 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 784 ms
-2025-03-11T22:51:00.022-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T22:51:00.057-06:00  INFO 16568 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T22:51:00.079-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T22:51:00.245-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T22:51:00.263-06:00  INFO 16568 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T22:51:00.488-06:00  INFO 16568 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@768f4b42
-2025-03-11T22:51:00.489-06:00  INFO 16568 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T22:51:00.517-06:00  WARN 16568 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T22:51:00.518-06:00  WARN 16568 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T22:51:00.530-06:00  INFO 16568 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-03-17T08:28:26.848-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-17T08:28:27.108-06:00  INFO 27336 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:28:27.367-06:00  INFO 27336 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-03-17T08:28:27.385-06:00  WARN 27336 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-17T08:28:27.676-06:00  INFO 27336 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-17T08:28:27.681-06:00  INFO 27336 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.254 seconds (process running for 3.682)
+2025-03-17T08:28:54.708-06:00  INFO 27336 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x0320x14D0xd00x92P0x9e0xe90x8cI0xd5?;0xd10xfe0xa10x8f0xdc0xb60x050xfb0xf1u\0x0b0xc00x9a0x8f$0xae0xf1 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:28:54.708-06:00  INFO 27336 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x03=6O0xb80x930x1c0xe90xda0xb9Hz0xd5*0xd30xf6B&0xfflCe0xc60x1c0x880xbaV0x8e0xec0xfa0xb20xc8B ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:29:12.766-06:00  INFO 27336 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-17T08:29:12.772-06:00  INFO 27336 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-17T08:29:12.775-06:00  INFO 27336 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:29:12.777-06:00  INFO 27336 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-17T08:29:12.781-06:00  INFO 27336 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-17T08:31:21.912-06:00  INFO 23092 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 23092 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
+2025-03-17T08:31:21.914-06:00  INFO 23092 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-03-17T08:31:22.329-06:00  INFO 23092 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-17T08:31:22.372-06:00  INFO 23092 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2025-03-17T08:31:22.673-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-17T08:31:22.681-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-17T08:31:22.681-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-17T08:31:22.719-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-17T08:31:22.719-06:00  INFO 23092 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 769 ms
+2025-03-17T08:31:22.797-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-17T08:31:22.830-06:00  INFO 23092 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-17T08:31:22.851-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-17T08:31:23.029-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-17T08:31:23.049-06:00  INFO 23092 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-17T08:31:23.283-06:00  INFO 23092 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61c5fd78
+2025-03-17T08:31:23.284-06:00  INFO 23092 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-17T08:31:23.312-06:00  WARN 23092 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-17T08:31:23.313-06:00  WARN 23092 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-17T08:31:23.324-06:00  INFO 23092 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -104,40 +161,69 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-03-11T22:51:01.163-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T22:51:01.365-06:00  INFO 16568 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:51:01.651-06:00  INFO 16568 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T22:51:01.671-06:00  WARN 16568 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T22:51:01.965-06:00  INFO 16568 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T22:51:01.970-06:00  INFO 16568 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.116 seconds (process running for 3.531)
-2025-03-11T22:51:08.652-06:00  INFO 16568 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T22:51:08.652-06:00  INFO 16568 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T22:51:08.653-06:00  INFO 16568 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-03-11T22:51:18.769-06:00  WARN 16568 --- [ApiRestEventFlow] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2025-03-11T22:52:38.685-06:00  INFO 16568 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T22:52:38.690-06:00  INFO 16568 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T22:52:38.693-06:00  INFO 16568 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:52:38.695-06:00  INFO 16568 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T22:52:38.699-06:00  INFO 16568 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-03-11T22:55:45.637-06:00  INFO 26808 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 26808 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T22:55:45.638-06:00  INFO 26808 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T22:55:46.056-06:00  INFO 26808 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T22:55:46.098-06:00  INFO 26808 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
-2025-03-11T22:55:46.414-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T22:55:46.422-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T22:55:46.422-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T22:55:46.463-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T22:55:46.464-06:00  INFO 26808 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 791 ms
-2025-03-11T22:55:46.538-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T22:55:46.568-06:00  INFO 26808 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T22:55:46.587-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T22:55:46.762-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T22:55:46.782-06:00  INFO 26808 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T22:55:47.034-06:00  INFO 26808 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23bd047f
-2025-03-11T22:55:47.036-06:00  INFO 26808 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T22:55:47.064-06:00  WARN 26808 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T22:55:47.065-06:00  WARN 26808 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T22:55:47.077-06:00  INFO 26808 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-03-17T08:31:23.957-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-17T08:31:24.165-06:00  INFO 23092 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:31:24.431-06:00  INFO 23092 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-03-17T08:31:24.448-06:00  WARN 23092 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-17T08:31:24.742-06:00  INFO 23092 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-17T08:31:24.747-06:00  INFO 23092 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.154 seconds (process running for 3.572)
+2025-03-17T08:31:28.581-06:00  INFO 23092 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-17T08:31:28.581-06:00  INFO 23092 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-17T08:31:28.582-06:00  INFO 23092 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-17T08:31:57.454-06:00  INFO 23092 --- [ApiRestEventFlow] [http-nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x030xd6i0xc90x870xb710x050xd9c0x140xfa0x090xeem0x9f0xa20xad0xf7O0xe20x13E0x130x7f)0x9280x010x020xbfw@ ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:31:57.454-06:00  INFO 23092 --- [ApiRestEventFlow] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x030x84";X0x950xff0xc60x850x9e0xf20xe18^0xd8x0x160x0d0x160xb4A0x04VA0x800x8f(+Q0xce0xba0xd00xeb ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:34:23.500-06:00  INFO 23092 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-17T08:34:23.505-06:00  INFO 23092 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-17T08:34:23.509-06:00  INFO 23092 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:34:23.510-06:00  INFO 23092 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-17T08:34:23.513-06:00  INFO 23092 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-17T08:34:25.781-06:00  INFO 13664 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 13664 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
+2025-03-17T08:34:25.782-06:00  INFO 13664 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-03-17T08:34:26.188-06:00  INFO 13664 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-17T08:34:26.233-06:00  INFO 13664 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 3 JPA repository interfaces.
+2025-03-17T08:34:26.529-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-17T08:34:26.538-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-17T08:34:26.538-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-17T08:34:26.573-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-17T08:34:26.573-06:00  INFO 13664 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 759 ms
+2025-03-17T08:34:26.653-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-17T08:34:26.684-06:00  INFO 13664 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-17T08:34:26.704-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-17T08:34:26.874-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-17T08:34:26.892-06:00  INFO 13664 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-17T08:34:27.124-06:00  INFO 13664 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d18338b
+2025-03-17T08:34:27.125-06:00  INFO 13664 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-17T08:34:27.152-06:00  WARN 13664 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-17T08:34:27.153-06:00  WARN 13664 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-17T08:34:27.163-06:00  INFO 13664 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -145,40 +231,36 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-03-11T22:55:47.723-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T22:55:47.929-06:00  INFO 26808 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:55:48.211-06:00  INFO 26808 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T22:55:48.229-06:00  WARN 26808 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T22:55:48.535-06:00  INFO 26808 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T22:55:48.540-06:00  INFO 26808 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.2 seconds (process running for 3.634)
-2025-03-11T22:55:52.697-06:00  INFO 26808 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T22:55:52.697-06:00  INFO 26808 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T22:55:52.698-06:00  INFO 26808 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-03-11T22:56:07.516-06:00  WARN 26808 --- [ApiRestEventFlow] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2025-03-11T22:56:25.784-06:00  INFO 26808 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T22:56:25.789-06:00  INFO 26808 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T22:56:25.792-06:00  INFO 26808 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T22:56:25.793-06:00  INFO 26808 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T22:56:25.797-06:00  INFO 26808 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-03-11T23:01:12.678-06:00  INFO 13132 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 13132 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T23:01:12.679-06:00  INFO 13132 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T23:01:13.087-06:00  INFO 13132 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T23:01:13.134-06:00  INFO 13132 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 3 JPA repository interfaces.
-2025-03-11T23:01:13.485-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T23:01:13.493-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T23:01:13.493-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T23:01:13.535-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T23:01:13.535-06:00  INFO 13132 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 822 ms
-2025-03-11T23:01:13.608-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T23:01:13.637-06:00  INFO 13132 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T23:01:13.658-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T23:01:13.833-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T23:01:13.852-06:00  INFO 13132 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T23:01:14.085-06:00  INFO 13132 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a95cb11
-2025-03-11T23:01:14.088-06:00  INFO 13132 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T23:01:14.117-06:00  WARN 13132 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T23:01:14.117-06:00  WARN 13132 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T23:01:14.129-06:00  INFO 13132 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-03-17T08:34:27.751-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-17T08:34:27.927-06:00  INFO 13664 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:34:28.184-06:00  INFO 13664 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-03-17T08:34:28.202-06:00  WARN 13664 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-17T08:34:28.482-06:00  INFO 13664 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-17T08:34:28.486-06:00  INFO 13664 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 2.982 seconds (process running for 3.398)
+2025-03-17T08:35:26.930-06:00  INFO 13664 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-17T08:35:26.935-06:00  INFO 13664 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-17T08:35:26.939-06:00  INFO 13664 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:35:26.941-06:00  INFO 13664 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-17T08:35:26.945-06:00  INFO 13664 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-17T08:35:29.061-06:00  INFO 1552 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 1552 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
+2025-03-17T08:35:29.062-06:00  INFO 1552 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-03-17T08:35:29.460-06:00  INFO 1552 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-17T08:35:29.502-06:00  INFO 1552 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
+2025-03-17T08:35:29.793-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-17T08:35:29.807-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-17T08:35:29.807-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-17T08:35:29.841-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-17T08:35:29.841-06:00  INFO 1552 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 745 ms
+2025-03-17T08:35:29.911-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-17T08:35:29.940-06:00  INFO 1552 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-17T08:35:29.961-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-17T08:35:30.130-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-17T08:35:30.149-06:00  INFO 1552 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-17T08:35:30.374-06:00  INFO 1552 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@30358dc7
+2025-03-17T08:35:30.375-06:00  INFO 1552 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-17T08:35:30.401-06:00  WARN 1552 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-17T08:35:30.401-06:00  WARN 1552 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-17T08:35:30.413-06:00  INFO 1552 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -186,40 +268,54 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-03-11T23:01:14.745-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T23:01:14.930-06:00  INFO 13132 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T23:01:15.192-06:00  INFO 13132 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T23:01:15.209-06:00  WARN 13132 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T23:01:15.495-06:00  INFO 13132 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T23:01:15.500-06:00  INFO 13132 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.115 seconds (process running for 3.537)
-2025-03-11T23:01:17.550-06:00  INFO 13132 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T23:01:17.550-06:00  INFO 13132 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T23:01:17.551-06:00  INFO 13132 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-03-11T23:01:17.615-06:00  WARN 13132 --- [ApiRestEventFlow] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)]
-2025-03-11T23:04:23.888-06:00  INFO 13132 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T23:04:23.893-06:00  INFO 13132 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T23:04:23.897-06:00  INFO 13132 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T23:04:23.907-06:00  INFO 13132 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T23:04:23.911-06:00  INFO 13132 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-03-11T23:04:26.114-06:00  INFO 28784 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 28784 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T23:04:26.115-06:00  INFO 28784 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T23:04:26.514-06:00  INFO 28784 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T23:04:26.556-06:00  INFO 28784 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
-2025-03-11T23:04:26.853-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T23:04:26.861-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T23:04:26.862-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T23:04:26.896-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T23:04:26.896-06:00  INFO 28784 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 747 ms
-2025-03-11T23:04:26.971-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T23:04:27.002-06:00  INFO 28784 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T23:04:27.021-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T23:04:27.192-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T23:04:27.213-06:00  INFO 28784 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T23:04:27.465-06:00  INFO 28784 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c64339f
-2025-03-11T23:04:27.468-06:00  INFO 28784 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T23:04:27.498-06:00  WARN 28784 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T23:04:27.499-06:00  WARN 28784 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T23:04:27.512-06:00  INFO 28784 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-03-17T08:35:31.003-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-17T08:35:31.186-06:00  INFO 1552 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:35:31.438-06:00  INFO 1552 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-03-17T08:35:31.459-06:00  WARN 1552 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-17T08:35:31.754-06:00  INFO 1552 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-17T08:35:31.759-06:00  INFO 1552 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 2.961 seconds (process running for 3.361)
+2025-03-17T08:35:44.907-06:00  INFO 1552 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-17T08:35:44.907-06:00  INFO 1552 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-17T08:35:44.908-06:00  INFO 1552 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-17T08:35:57.302-06:00  INFO 1552 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07a0x010x000x07]0x030x03Y0xa80x030xa40xc50xae*o00xa20x80q0xf7C ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:409) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:1575) ~[na:na]
+
+2025-03-17T08:41:01.039-06:00  INFO 1552 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-17T08:41:01.045-06:00  INFO 1552 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-17T08:41:01.049-06:00  INFO 1552 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:41:01.050-06:00  INFO 1552 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-17T08:41:01.057-06:00  INFO 1552 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-17T08:41:02.666-06:00  INFO 25268 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 25268 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
+2025-03-17T08:41:02.667-06:00  INFO 25268 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
+2025-03-17T08:41:03.072-06:00  INFO 25268 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-17T08:41:03.112-06:00  INFO 25268 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
+2025-03-17T08:41:03.404-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-17T08:41:03.412-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-17T08:41:03.412-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-17T08:41:03.451-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-17T08:41:03.451-06:00  INFO 25268 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 752 ms
+2025-03-17T08:41:03.521-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-17T08:41:03.552-06:00  INFO 25268 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-03-17T08:41:03.572-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-17T08:41:03.740-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-17T08:41:03.758-06:00  INFO 25268 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-17T08:41:03.985-06:00  INFO 25268 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ea07516
+2025-03-17T08:41:03.987-06:00  INFO 25268 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-17T08:41:04.014-06:00  WARN 25268 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-17T08:41:04.015-06:00  WARN 25268 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-03-17T08:41:04.026-06:00  INFO 25268 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -227,57 +323,17 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-03-11T23:04:28.122-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T23:04:28.324-06:00  INFO 28784 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T23:04:28.578-06:00  INFO 28784 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T23:04:28.594-06:00  WARN 28784 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T23:04:28.882-06:00  INFO 28784 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T23:04:28.887-06:00  INFO 28784 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.044 seconds (process running for 3.447)
-2025-03-11T23:04:45.663-06:00  INFO 28784 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T23:04:45.664-06:00  INFO 28784 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T23:04:45.669-06:00  INFO 28784 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2025-03-11T23:08:05.869-06:00  INFO 28784 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T23:08:05.875-06:00  INFO 28784 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T23:08:05.877-06:00  INFO 28784 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T23:08:05.879-06:00  INFO 28784 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T23:08:05.884-06:00  INFO 28784 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-03-11T23:08:08.073-06:00  INFO 22236 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Starting ApiRestEventFlowApplication using Java 23.0.1 with PID 22236 (S:\integradora V\ApiRestEventFlow\target\classes started by isaac in S:\integradora V\ApiRestEventFlow)
-2025-03-11T23:08:08.074-06:00  INFO 22236 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : No active profile set, falling back to 1 default profile: "default"
-2025-03-11T23:08:08.462-06:00  INFO 22236 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-03-11T23:08:08.502-06:00  INFO 22236 --- [ApiRestEventFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
-2025-03-11T23:08:08.802-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-03-11T23:08:08.810-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-03-11T23:08:08.810-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
-2025-03-11T23:08:08.845-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-03-11T23:08:08.845-06:00  INFO 22236 --- [ApiRestEventFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 739 ms
-2025-03-11T23:08:08.920-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-03-11T23:08:08.949-06:00  INFO 22236 --- [ApiRestEventFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
-2025-03-11T23:08:08.969-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-03-11T23:08:09.133-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-03-11T23:08:09.151-06:00  INFO 22236 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-03-11T23:08:09.377-06:00  INFO 22236 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e929182
-2025-03-11T23:08:09.378-06:00  INFO 22236 --- [ApiRestEventFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-03-11T23:08:09.405-06:00  WARN 22236 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-03-11T23:08:09.405-06:00  WARN 22236 --- [ApiRestEventFlow] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-03-11T23:08:09.417-06:00  INFO 22236 --- [ApiRestEventFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-03-11T23:08:10.006-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-03-11T23:08:10.205-06:00  INFO 22236 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T23:08:10.460-06:00  INFO 22236 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-03-11T23:08:10.477-06:00  WARN 22236 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-03-11T23:08:10.760-06:00  INFO 22236 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-03-11T23:08:10.764-06:00  INFO 22236 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 2.964 seconds (process running for 3.369)
-2025-03-11T23:08:14.844-06:00  INFO 22236 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-03-11T23:08:14.845-06:00  INFO 22236 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-03-11T23:08:14.846-06:00  INFO 22236 --- [ApiRestEventFlow] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-03-11T23:08:37.461-06:00  INFO 22236 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-03-11T23:08:37.467-06:00  INFO 22236 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-03-11T23:08:37.471-06:00  INFO 22236 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-03-11T23:08:37.472-06:00  INFO 22236 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-03-11T23:08:37.476-06:00  INFO 22236 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-17T08:41:04.627-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-17T08:41:04.809-06:00  INFO 25268 --- [ApiRestEventFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:41:05.086-06:00  INFO 25268 --- [ApiRestEventFlow] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-03-17T08:41:05.105-06:00  WARN 25268 --- [ApiRestEventFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-17T08:41:05.418-06:00  INFO 25268 --- [ApiRestEventFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-17T08:41:05.423-06:00  INFO 25268 --- [ApiRestEventFlow] [main] u.e.A.ApiRestEventFlowApplication        : Started ApiRestEventFlowApplication in 3.028 seconds (process running for 3.456)
+2025-03-17T08:41:08.350-06:00  INFO 25268 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-17T08:41:08.350-06:00  INFO 25268 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-17T08:41:08.350-06:00  INFO 25268 --- [ApiRestEventFlow] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-17T08:56:55.102-06:00  INFO 25268 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-17T08:56:55.108-06:00  INFO 25268 --- [ApiRestEventFlow] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-17T08:56:55.113-06:00  INFO 25268 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-17T08:56:55.114-06:00  INFO 25268 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-17T08:56:55.120-06:00  INFO 25268 --- [ApiRestEventFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
