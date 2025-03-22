@@ -35,3 +35,7 @@ build/
 ####logs
 servicio_test.log
 .gz
+
+###cloud
+src/main/java/utez/edu/ApiRestEventFlow/cloud/CloudinaryConfig.java
+

@@ -1,6 +1,7 @@
 package utez.edu.ApiRestEventFlow.activity.model;
 
 import jakarta.validation.constraints.*;
+import org.springframework.web.multipart.MultipartFile;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserDTO;
@@ -9,6 +10,7 @@ import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.List;
 
 public class ActivityDTO {
 
@@ -33,6 +35,7 @@ public class ActivityDTO {
     private Activity fromActivity;
 
     //faltan las imagenes
+    private List<MultipartFile> images;
 
     private boolean status;
 
@@ -124,6 +127,15 @@ public class ActivityDTO {
 
     public void setFromActivity(Activity fromActivity) {
         this.fromActivity = fromActivity;
+    }
+
+    // Getters y Setters para images
+    public List<MultipartFile> getImages() {
+        return images;
+    }
+
+    public void setImages(List<MultipartFile> images) {
+        this.images = images;
     }
 
     public interface RegisterEvent{}

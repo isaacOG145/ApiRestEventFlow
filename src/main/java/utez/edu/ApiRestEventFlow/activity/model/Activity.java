@@ -39,12 +39,13 @@ public class Activity {
 
     @Column(name = "time", columnDefinition = "TIME")
     private LocalTime time; // Usado solo para talleres
-    /*
-    *  @ElementCollection
+
+    @ElementCollection
     @CollectionTable(name = "activity_images", joinColumns = @JoinColumn(name = "activity_id"))
-    @Column(name = "image_path", columnDefinition = "VARCHAR(255)")
-    private List<String> imagePaths = new ArrayList<>();
-    * */
+    @Column(name = "image_url", columnDefinition = "VARCHAR(255)")
+    private List<String> imageUrls = new ArrayList<>();
+
+
     @ManyToOne
     @JoinColumn(name = "from_activity", referencedColumnName = "activity_id")
     private Activity fromActivity;
@@ -124,15 +125,15 @@ public class Activity {
     public void setTime(LocalTime time) {
         this.time = time;
     }
-    /*
-    * public List<String> getImagePaths() {
-        return imagePaths;
+
+    // Getters y Setters para imageUrls
+    public List<String> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImagePaths(List<String> imagePaths) {
-        this.imagePaths = imagePaths;
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
-    * */
 
     public TypeActivity getTypeActivity() {
         return typeActivity;
