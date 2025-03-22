@@ -1,11 +1,14 @@
 package utez.edu.ApiRestEventFlow.activity.control;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import utez.edu.ApiRestEventFlow.Role.Role;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.activity.model.Activity;
@@ -20,13 +23,18 @@ import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
+
+    @Autowired
+    private Cloudinary cloudinary;
 
     @Autowired
     public ActivityService(ActivityRepository activityRepository, UserRepository userRepository) {
@@ -52,15 +60,16 @@ public class ActivityService {
         }
     }
 
-    //Esto no ha funcionado
-    /*
-    // private void validateFutureDate(Date date) {
-    //        if (!DateUtils.isFutureDate(date)) {
-    //            throw new ValidationException("La fecha debe ser futura");
-    //        }
-    //    }
-    // */
+    private void validateImg(ActivityDTO activityDTO) {
+        if (activityDTO.getImages() != null && !activityDTO.getImages().isEmpty()) {
+            for (MultipartFile image : activityDTO.getImages()) {
+                if (image.getSize() > 10 * 1024 * 1024) { // 10 MB
+                    throw new ValidationException("El tamaño de la imagen no debe exceder 10 MB");
+                }
 
+            }
+        }
+    }
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findAll() {
         try {
@@ -133,6 +142,7 @@ public class ActivityService {
         }
     }
 
+
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> saveEvent(ActivityDTO activityDTO) {
         try {
@@ -140,7 +150,7 @@ public class ActivityService {
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
 
             validateAdmin(owner);
-
+            validateImg(activityDTO);
 
             Activity newActivity = new Activity();
             newActivity.setName(activityDTO.getName());
@@ -149,6 +159,16 @@ public class ActivityService {
             newActivity.setTypeActivity(TypeActivity.EVENT);
             newActivity.setOwnerActivity(owner);
             newActivity.setStatus(true);
+
+            // Subir imágenes a Cloudinary y guardar las URLs
+            if (activityDTO.getImages() != null && !activityDTO.getImages().isEmpty()) {
+                List<String> imageUrls = new ArrayList<>();
+                for (MultipartFile image : activityDTO.getImages()) {
+                    Map uploadResult = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
+                    imageUrls.add(uploadResult.get("url").toString());
+                }
+                newActivity.setImageUrls(imageUrls);
+            }
 
             newActivity = activityRepository.save(newActivity);
 
@@ -182,6 +202,16 @@ public class ActivityService {
             newActivity.setTypeActivity(TypeActivity.WORKSHOP);
             newActivity.setFromActivity(fromActivity);
             newActivity.setStatus(true);
+
+            // Subir imágenes a Cloudinary y guardar las URLs
+            if (activityDTO.getImages() != null && !activityDTO.getImages().isEmpty()) {
+                List<String> imageUrls = new ArrayList<>();
+                for (MultipartFile image : activityDTO.getImages()) {
+                    Map uploadResult = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
+                    imageUrls.add(uploadResult.get("url").toString());
+                }
+                newActivity.setImageUrls(imageUrls);
+            }
 
             newActivity = activityRepository.save(newActivity);
 

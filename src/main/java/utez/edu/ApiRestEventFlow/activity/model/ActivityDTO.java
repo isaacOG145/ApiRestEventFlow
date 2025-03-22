@@ -4,11 +4,9 @@ import jakarta.validation.constraints.*;
 import org.springframework.web.multipart.MultipartFile;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
-import utez.edu.ApiRestEventFlow.user.model.UserDTO;
 import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -16,31 +14,41 @@ public class ActivityDTO {
 
     @NotNull(groups = {ModifyEvent.class, ChangeStatus.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
+
     @NotNull(groups = {RegisterEvent.class}, message = "El dueño de la actividad es obligatorio")
     private User ownerActivity;
+
     @NotBlank(groups = {RegisterWorkshop.class}, message = "El nombre del ponente es obligatorio")
     private String speaker;
-    @NotBlank(groups = {RegisterEvent.class,RegisterWorkshop.class}, message = ErrorMessages.NAME_REQUIRED)
+
+    @NotBlank(groups = {RegisterEvent.class, RegisterWorkshop.class}, message = ErrorMessages.NAME_REQUIRED)
     private String name;
+
     @NotBlank(groups = {RegisterEvent.class, RegisterWorkshop.class}, message = "La descripción es obligatoria")
     private String description;
+
     @NotNull(groups = {RegisterWorkshop.class}, message = "El cupo es obligatorio")
     private Integer quota;
+
     @NotNull(groups = {RegisterEvent.class}, message = "La fecha es obligatoria")
     private Date date;
+
     @NotNull(groups = {RegisterWorkshop.class}, message = "La hora es obligatoria")
     private LocalTime time;
+
     private TypeActivity typeActivity;
+
     @NotNull(groups = {RegisterWorkshop.class}, message = "El ID del evento es obligatorio")
     private Activity fromActivity;
 
-    //faltan las imagenes
+    // Campo para las imágenes
     private List<MultipartFile> images;
 
     private boolean status;
 
     public ActivityDTO() {}
 
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -113,14 +121,6 @@ public class ActivityDTO {
         this.typeActivity = typeActivity;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public Activity getFromActivity() {
         return fromActivity;
     }
@@ -129,7 +129,6 @@ public class ActivityDTO {
         this.fromActivity = fromActivity;
     }
 
-    // Getters y Setters para images
     public List<MultipartFile> getImages() {
         return images;
     }
@@ -138,13 +137,22 @@ public class ActivityDTO {
         this.images = images;
     }
 
-    public interface RegisterEvent{}
+    public boolean isStatus() {
+        return status;
+    }
 
-    public interface RegisterWorkshop{}
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
-    public interface ModifyEvent{}
+    // Interfaces para validación por grupos
+    public interface RegisterEvent {}
 
-    public interface ModifyWorkshop{}
+    public interface RegisterWorkshop {}
 
-    public interface ChangeStatus{}
+    public interface ModifyEvent {}
+
+    public interface ModifyWorkshop {}
+
+    public interface ChangeStatus {}
 }
