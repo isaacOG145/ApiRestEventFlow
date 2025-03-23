@@ -24,6 +24,12 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("/findId/{userId}")
+    public ResponseEntity<Message> getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+
     @GetMapping("/findAllAdmins")
     public ResponseEntity<Message> getAllAdmins() {
         return userService.findAllAdmins();
