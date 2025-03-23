@@ -1,5 +1,6 @@
 package utez.edu.ApiRestEventFlow.user.control;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,6 +19,7 @@ import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -59,6 +61,23 @@ public class UserService {
             return new ResponseEntity<>(new Message(users, "Lista de usuarios", TypesResponse.SUCCESS), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> getUserById(Long userId) {
+        try {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+
+            // Si el usuario es encontrado, se responde con sus datos.
+            return new ResponseEntity<>(new Message(user, "Datos del usuario obtenidos exitosamente", TypesResponse.SUCCESS), HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+
+            return new ResponseEntity<>(new Message("Usuario no encontrado", TypesResponse.WARNING), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(new Message("Revise los datos e inténtelo de nuevo", TypesResponse.ERROR), HttpStatus.BAD_REQUEST);
         }
     }
 
