@@ -99,24 +99,74 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<Message> findByOwner(ActivityDTO activityDTO) {
+    public ResponseEntity<Message> findEventsByOwner(Long ownerId) {
         try {
-            User owner = userRepository.findById(activityDTO.getOwnerActivity().getId())
+            // Validar que el owner existe y es ADMIN
+            User owner = userRepository.findById(ownerId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
             validateAdmin(owner);
 
-            List<Activity> activities = activityRepository.findByOwnerActivity_Id(owner.getId());
+            // Buscar solo eventos (TypeActivity.EVENT)
+            List<Activity> events = activityRepository.findEventsByOwner(ownerId);
 
-            if (activities.isEmpty()) {
-                return new ResponseEntity<>(new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+            if (events.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
             }
 
-            return new ResponseEntity<>(new Message(activities, "Actividades encontradas", TypesResponse.SUCCESS), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    new Message(events, "Eventos encontrados", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
 
         } catch (ValidationException e) {
-            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
         } catch (Exception e) {
-            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findWorkshopsByOwner(Long ownerId) {
+        try {
+            // Validar que el owner existe y es ADMIN
+            User owner = userRepository.findById(ownerId)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
+            validateAdmin(owner);
+
+            // Buscar solo talleres (TypeActivity.WORKSHOP)
+            List<Activity> workshops = activityRepository.findWorkshopsByOwner(ownerId);
+
+            if (workshops.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
+            }
+
+            return new ResponseEntity<>(
+                    new Message(workshops, "Talleres encontrados", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
         }
     }
 
@@ -184,15 +234,18 @@ public class ActivityService {
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> saveWorkshop(ActivityDTO activityDTO) {
         try {
+            // 1. Validar y obtener el evento padre
             Activity fromActivity = activityRepository.findById(activityDTO.getFromActivity().getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
 
-            validateEvent(fromActivity);
+            validateEvent(fromActivity); // Asegura que fromActivity es un EVENT
 
+            // 2. Validaciones adicionales
             if (activityDTO.getQuota() < 1) {
                 throw new ValidationException("El cupo debe ser mayor a 0");
             }
 
+            // 3. Crear el nuevo taller
             Activity newActivity = new Activity();
             newActivity.setName(activityDTO.getName());
             newActivity.setDescription(activityDTO.getDescription());
@@ -201,9 +254,13 @@ public class ActivityService {
             newActivity.setTime(activityDTO.getTime());
             newActivity.setTypeActivity(TypeActivity.WORKSHOP);
             newActivity.setFromActivity(fromActivity);
+
+            // 4. Asignar el mismo dueño que el evento padre
+            newActivity.setOwnerActivity(fromActivity.getOwnerActivity());
+
             newActivity.setStatus(true);
 
-            // Subir imágenes a Cloudinary y guardar las URLs
+            // 5. Subir imágenes a Cloudinary
             if (activityDTO.getImages() != null && !activityDTO.getImages().isEmpty()) {
                 List<String> imageUrls = new ArrayList<>();
                 for (MultipartFile image : activityDTO.getImages()) {
@@ -213,14 +270,23 @@ public class ActivityService {
                 newActivity.setImageUrls(imageUrls);
             }
 
+            // 6. Guardar y retornar respuesta
             newActivity = activityRepository.save(newActivity);
-
-            return new ResponseEntity<>(new Message(newActivity, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    new Message(newActivity, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
 
         } catch (ValidationException e) {
-            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
         } catch (Exception e) {
-            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
         }
     }
 

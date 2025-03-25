@@ -95,22 +95,36 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<Message> findByBoss(UserDTO userDTO) {
+    public ResponseEntity<Message> findByBossId(Long bossId) {
         try {
-            User sentByUser = userRepository.findById(userDTO.getSentByUser().getId())
+            // Verificamos que el jefe exista
+            User sentByUser = userRepository.findById(bossId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
 
+            // Buscamos los checadores asociados a este jefe
             List<User> checkers = userRepository.findBySentByUser(sentByUser);
 
             if (checkers.isEmpty()) {
-                return new ResponseEntity<>(new Message(ErrorMessages.USERS_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.USERS_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
             }
 
-            return new ResponseEntity<>(new Message(checkers, "Lista de checadores", TypesResponse.SUCCESS), HttpStatus.OK);
+            return new ResponseEntity<>(
+                    new Message(checkers, "Lista de checadores", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
         } catch (ValidationException e) {
-            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
         } catch (Exception e) {
-            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
         }
     }
 

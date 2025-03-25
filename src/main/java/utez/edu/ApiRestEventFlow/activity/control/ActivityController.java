@@ -38,9 +38,14 @@ public class ActivityController {
         return activityService.findAllEvents();
     }
 
-    @GetMapping("/findByOwner")
-    public ResponseEntity<Message> getByOwner(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.findByOwner(activityDTO);
+    @GetMapping("/events/byOwner/{ownerId}")
+    public ResponseEntity<Message> getEventsByOwner(@PathVariable Long ownerId) {
+        return activityService.findEventsByOwner(ownerId);
+    }
+
+    @GetMapping("/workshops/byOwner/{ownerId}")
+    public ResponseEntity<Message> getWorkshopsByOwner(@PathVariable Long ownerId) {
+        return activityService.findWorkshopsByOwner(ownerId);
     }
 
     @GetMapping("/findByEvent")
