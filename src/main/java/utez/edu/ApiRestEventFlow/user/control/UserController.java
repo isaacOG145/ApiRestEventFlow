@@ -35,9 +35,9 @@ public class UserController {
         return userService.findAllAdmins();
     }
 
-    @GetMapping("/findByBoss")
-    public ResponseEntity<Message> getByBoss(@Validated @RequestBody UserDTO userDTO) {
-        return userService.findByBoss(userDTO);
+    @GetMapping("/findByBoss/{bossId}")
+    public ResponseEntity<Message> getByBoss(@PathVariable Long bossId) {
+        return userService.findByBossId(bossId);
     }
 
     @PostMapping("/saveAdmin")
