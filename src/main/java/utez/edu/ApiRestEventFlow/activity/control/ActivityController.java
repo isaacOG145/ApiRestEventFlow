@@ -33,10 +33,17 @@ public class ActivityController {
         return activityService.findAll();
     }
 
-    @GetMapping("/findAllEvents")
+    @GetMapping("/findActiveEvents")
     public ResponseEntity<Message> getAllEvents() {
         return activityService.findAllEvents();
     }
+
+    @GetMapping("event/findById/{id}")
+    public ResponseEntity<Message> getEventById(@PathVariable Long id) {
+        return activityService.findById(id);
+    }
+
+
 
     @GetMapping("/events/byOwner/{ownerId}")
     public ResponseEntity<Message> getEventsByOwner(@PathVariable Long ownerId) {
@@ -48,9 +55,9 @@ public class ActivityController {
         return activityService.findWorkshopsByOwner(ownerId);
     }
 
-    @GetMapping("/findByEvent")
-    public ResponseEntity<Message> getByEvent(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.findByFromActivity(activityDTO);
+    @GetMapping("/findByEvent/{id}")
+    public ResponseEntity<Message> getByEvent(@PathVariable Long id) {
+        return activityService.findByFromActivity(id);
     }
 
     @PostMapping("/saveEvent")

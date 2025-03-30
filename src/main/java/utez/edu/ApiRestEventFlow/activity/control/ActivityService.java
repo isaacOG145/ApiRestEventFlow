@@ -88,15 +88,48 @@ public class ActivityService {
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findAllEvents() {
         try {
-            List<Activity> activities = activityRepository.findByTypeActivity(TypeActivity.EVENT);
+            List<Activity> activities = activityRepository.findActiveEvents();  // Usamos el método que obtiene solo eventos activos
             if (activities.isEmpty()) {
                 return new ResponseEntity<>(new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
             }
-            return new ResponseEntity<>(new Message(activities, "Lista de eventos", TypesResponse.SUCCESS), HttpStatus.OK);
+            return new ResponseEntity<>(new Message(activities, "Lista de eventos activos", TypesResponse.SUCCESS), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findById(Long eventId) {
+        try {
+            // Buscar el evento por su ID
+            Activity event = activityRepository.findById(eventId)
+                    .orElseThrow(() -> new ValidationException("Evento no encontrado"));
+
+            // Verificar si el evento es del tipo EVENT
+            if (!event.getTypeActivity().equals(TypeActivity.EVENT)) {
+                return new ResponseEntity<>(
+                        new Message("El evento no es del tipo correcto", TypesResponse.WARNING),
+                        HttpStatus.BAD_REQUEST
+                );
+            }
+
+            return new ResponseEntity<>(
+                    new Message(event, "Evento encontrado", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message("Error interno del servidor", TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
 
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findEventsByOwner(Long ownerId) {
@@ -171,13 +204,13 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<Message> findByFromActivity(ActivityDTO activityDTO) {
+    public ResponseEntity<Message> findByFromActivity(Long id) {
         try {
-            Activity fromActivity = activityRepository.findById(activityDTO.getFromActivity().getId())
+            Activity fromActivity = activityRepository.findById(id)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
             validateEvent(fromActivity);
 
-            List<Activity> activities = activityRepository.findByFromActivity_Id(fromActivity.getId());
+            List<Activity> activities = activityRepository.findByFromActivity_Id(id);
 
             if (activities.isEmpty()) {
                 return new ResponseEntity<>(new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
