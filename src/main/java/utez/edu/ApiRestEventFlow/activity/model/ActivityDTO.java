@@ -44,6 +44,12 @@ public class ActivityDTO {
     // Campo para las imágenes
     private List<MultipartFile> images;
 
+    // Campo para las URLs de imágenes a eliminar
+    private List<String> deletedImages;
+
+    // Campo para las URLs de imágenes existentes que se conservan
+    private List<String> existingImages;
+
     private boolean status;
 
     public ActivityDTO() {}
@@ -143,6 +149,24 @@ public class ActivityDTO {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+
+    // Nuevos getters y setters
+    public List<String> getDeletedImages() {
+        return deletedImages;
+    }
+
+    public void setDeletedImages(List<String> deletedImages) {
+        this.deletedImages = deletedImages;
+    }
+
+    public List<String> getExistingImages() {
+        return existingImages;
+    }
+
+    public void setExistingImages(List<String> existingImages) {
+        this.existingImages = existingImages;
     }
 
     // Interfaces para validación por grupos

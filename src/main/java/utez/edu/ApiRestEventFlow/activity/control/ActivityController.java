@@ -2,6 +2,7 @@ package utez.edu.ApiRestEventFlow.activity.control;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,12 @@ public class ActivityController {
         return activityService.findById(id);
     }
 
+    @GetMapping("workShop/findById/{id}")
+    public ResponseEntity<Message> getWorkshopById(@PathVariable Long id) {
+        return activityService.findWorkShopById(id);
+    }
+
+
 
 
     @GetMapping("/events/byOwner/{ownerId}")
@@ -76,13 +83,20 @@ public class ActivityController {
         return activityService.saveWorkshop(activityDTO);
     }
 
-    @PutMapping("/updateEvent")
-    public ResponseEntity<Message> updateEvent(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.updateEvent(activityDTO);
+    @PutMapping(value = "/updateEvent", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Message> updateEvent(
+            @Validated(ActivityDTO.ModifyEvent.class) @RequestPart("activity") ActivityDTO activityDTO,
+            @RequestPart(value = "images", required = false) List<MultipartFile> newImages) {
+
+        return activityService.updateEvent(activityDTO, newImages);
     }
 
+
     @PutMapping("/updateWorkshop")
-    public ResponseEntity<Message> updateWorkshop(@Validated @RequestBody ActivityDTO activityDTO) {
+    public ResponseEntity<Message> updateWorkshop(
+            @Validated @RequestPart("activity") ActivityDTO activityDTO,
+            @RequestPart(value = "images", required = false) List<MultipartFile> images) {
+        activityDTO.setImages(images);
         return activityService.updateWorkshop(activityDTO);
     }
 
