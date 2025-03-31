@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import utez.edu.ApiRestEventFlow.Role.Role;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
@@ -19,10 +18,8 @@ import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserRepository;
 import utez.edu.ApiRestEventFlow.utils.Message;
 import utez.edu.ApiRestEventFlow.utils.TypesResponse;
-import utez.edu.ApiRestEventFlow.validation.DateUtils;
 import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -404,7 +401,6 @@ public class ActivityService {
                             cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
                         }
                     } catch (Exception e) {
-
                         // Continuar aunque falle la eliminación en Cloudinary
                     }
                 }
