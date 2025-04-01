@@ -29,5 +29,8 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     @Query("SELECT a FROM Activity a WHERE a.typeActivity = 'EVENT' AND a.status = true")
     List<Activity> findActiveEvents();
 
+    @Query("SELECT a FROM Activity a WHERE a.typeActivity = 'WORKSHOP' AND a.status = true")
+    List<Activity> findActiveWorkshops();
+
 
 }

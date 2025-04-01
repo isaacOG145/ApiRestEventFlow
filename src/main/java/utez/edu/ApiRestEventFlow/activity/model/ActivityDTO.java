@@ -6,7 +6,7 @@ import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class ActivityDTO {
     private Integer quota;
 
     @NotNull(groups = {RegisterEvent.class}, message = "La fecha es obligatoria")
-    private Date date;
+    private LocalDate date;
 
     @NotNull(groups = {RegisterWorkshop.class}, message = "La hora es obligatoria")
     private LocalTime time;
@@ -103,11 +103,11 @@ public class ActivityDTO {
         this.quota = quota;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

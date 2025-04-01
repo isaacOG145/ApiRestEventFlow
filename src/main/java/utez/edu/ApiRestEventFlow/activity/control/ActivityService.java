@@ -119,6 +119,19 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
+    public ResponseEntity<Message> findAllWorkshops() {
+        try {
+            List<Activity> activities = activityRepository.findActiveWorkshops(); // Usamos el método que obtiene solo talleres activos
+            if (activities.isEmpty()) {
+                return new ResponseEntity<>(new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(new Message(activities, "Lista de talleres activos", TypesResponse.SUCCESS), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional(readOnly = true)
     public ResponseEntity<Message> findById(Long eventId) {
         try {
             // Buscar el evento por su ID

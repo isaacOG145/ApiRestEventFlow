@@ -29,39 +29,43 @@ public class ActivityController {
         this.activityImageService = activityImageService;
     }
 
+    //buscar todos
     @GetMapping("/findAll")
     public ResponseEntity<Message> getAllActivities() {
         return activityService.findAll();
     }
-
+    //mostrar todos los eventos activos
     @GetMapping("/findActiveEvents")
     public ResponseEntity<Message> getAllEvents() {
         return activityService.findAllEvents();
     }
+    //mostrar todos los talleres activos
+    @GetMapping("/findActiveWorkshops")
+    public ResponseEntity<Message> getAllWorkshops() {
+        return activityService.findAllWorkshops();
+    }
 
+    //buscar eventos por id
     @GetMapping("event/findById/{id}")
     public ResponseEntity<Message> getEventById(@PathVariable Long id) {
         return activityService.findById(id);
     }
-
+    //buscar talleres por id
     @GetMapping("workShop/findById/{id}")
     public ResponseEntity<Message> getWorkshopById(@PathVariable Long id) {
         return activityService.findWorkShopById(id);
     }
-
-
-
-
+    //buscar todos los talleres de un usuario
     @GetMapping("/events/byOwner/{ownerId}")
     public ResponseEntity<Message> getEventsByOwner(@PathVariable Long ownerId) {
         return activityService.findEventsByOwner(ownerId);
     }
-
+    //buscar todos los talleres de un usuario
     @GetMapping("/workshops/byOwner/{ownerId}")
     public ResponseEntity<Message> getWorkshopsByOwner(@PathVariable Long ownerId) {
         return activityService.findWorkshopsByOwner(ownerId);
     }
-
+    //buscar talleres por evento asociado
     @GetMapping("/findByEvent/{id}")
     public ResponseEntity<Message> getByEvent(@PathVariable Long id) {
         return activityService.findByFromActivity(id);
