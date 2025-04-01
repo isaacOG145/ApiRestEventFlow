@@ -450,24 +450,16 @@ public class ActivityService {
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> updateWorkshop(ActivityDTO activityDTO) {
+    public ResponseEntity<Message> updateWorkshop(ActivityDTO activityDTO, List<MultipartFile> newImages) {
         try {
-            // Buscar la actividad existente
+            // Buscar la actividad existente en la base de datos
             Activity activity = activityRepository.findById(activityDTO.getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
 
-            // Validar que la actividad sea un taller
+            // Validar que la actividad es un taller
             validateWorkshop(activity);
 
-            // Verificar y actualizar el cupo si se proporciona
-            if (activityDTO.getQuota() != null) {
-                if (activityDTO.getQuota() < 1) {
-                    throw new ValidationException("El cupo debe ser mayor a 0");
-                }
-                activity.setQuota(activityDTO.getQuota());
-            }
-
-            // Actualizar otros campos si se proporcionan
+            // Actualizar los campos básicos si se proporciona algún valor en el DTO
             if (activityDTO.getName() != null) {
                 activity.setName(activityDTO.getName());
             }
@@ -480,30 +472,54 @@ public class ActivityService {
             if (activityDTO.getSpeaker() != null) {
                 activity.setSpeaker(activityDTO.getSpeaker());
             }
-
-            // Actualizar las imágenes si se proporcionan
-            if (activityDTO.getImages() != null && !activityDTO.getImages().isEmpty()) {
-                // Eliminar las imágenes antiguas de Cloudinary
-                for (String oldImageUrl : activity.getImageUrls()) {
-                    String publicId = extractPublicIdFromUrl(oldImageUrl); // Extraer el public_id de la URL
-                    if (publicId != null) {
-                        cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap()); // Eliminar la imagen de Cloudinary
-                    }
+            if (activityDTO.getQuota() != null) {
+                if (activityDTO.getQuota() < 1) {
+                    throw new ValidationException("El cupo debe ser mayor a 0");
                 }
-
-                // Subir las nuevas imágenes a Cloudinary
-                List<String> newImageUrls = new ArrayList<>();
-                for (MultipartFile image : activityDTO.getImages()) {
-                    Map uploadResult = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
-                    newImageUrls.add(uploadResult.get("url").toString());
-                }
-
-                // Actualizar las URLs de las imágenes
-                activity.setImageUrls(newImageUrls);
+                activity.setQuota(activityDTO.getQuota());
             }
 
-            // Guardar la actividad actualizada
+            // 1. Inicializar con imágenes existentes que se conservan
+            List<String> finalImageUrls = new ArrayList<>(activityDTO.getExistingImages());
+
+            // 2. Eliminar imágenes marcadas para borrado
+            if (activityDTO.getDeletedImages() != null) {
+                for (String imageToDelete : activityDTO.getDeletedImages()) {
+                    try {
+                        String publicId = extractPublicIdFromUrl(imageToDelete);
+                        if (publicId != null) {
+                            cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+                        }
+                    } catch (Exception e) {
+                        // Continuar aunque falle la eliminación en Cloudinary
+                    }
+                }
+            }
+
+            // 3. Agregar nuevas imágenes
+            if (newImages != null && !newImages.isEmpty()) {
+                for (MultipartFile image : newImages) {
+                    try {
+                        Map uploadResult = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
+                        finalImageUrls.add(uploadResult.get("url").toString());
+                    } catch (Exception e) {
+
+                        throw new ValidationException("Error al procesar las imágenes nuevas");
+                    }
+                }
+            }
+
+            // Validar que haya al menos una imagen
+            if (finalImageUrls.isEmpty()) {
+                throw new ValidationException("El evento debe tener al menos una imagen");
+            }
+
+            activity.setImageUrls(finalImageUrls);
             activity = activityRepository.save(activity);
+
+
+
+
 
             // Retornar respuesta exitosa
             return new ResponseEntity<>(new Message(activity, ErrorMessages.SUCCESFUL_UPDATE, TypesResponse.SUCCESS), HttpStatus.OK);
@@ -516,6 +532,7 @@ public class ActivityService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
     @Transactional(rollbackFor = {SQLException.class})

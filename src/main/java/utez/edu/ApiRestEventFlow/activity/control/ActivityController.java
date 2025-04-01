@@ -95,14 +95,15 @@ public class ActivityController {
         return activityService.updateEvent(activityDTO, newImages);
     }
 
-
     @PutMapping("/updateWorkshop")
     public ResponseEntity<Message> updateWorkshop(
             @Validated @RequestPart("activity") ActivityDTO activityDTO,
-            @RequestPart(value = "images", required = false) List<MultipartFile> images) {
-        activityDTO.setImages(images);
-        return activityService.updateWorkshop(activityDTO);
+            @RequestPart(value = "images", required = false) List<MultipartFile> newImages) {
+
+        return activityService.updateWorkshop(activityDTO, newImages);
     }
+
+
 
     // Agregar imágenes a un evento
     @PostMapping("/{id}/addImages")
