@@ -3,42 +3,49 @@ package utez.edu.ApiRestEventFlow.user.model;
 
 import jakarta.validation.constraints.*;
 import utez.edu.ApiRestEventFlow.Role.Role;
+import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.Date;
 
 public class UserDTO {
 
-    @NotNull(groups = {ChangeStatus.class}, message = "El ID es obligatorio")
+    @NotNull(groups = {ChangeStatus.class, Modify.class, UpdatePassword.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El nombre es obligatorio")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, RegisterUser.class}, message = ErrorMessages.NAME_REQUIRED)
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
     private String name;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El apellido es obligatorio")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, RegisterUser.class}, message = "El apellido es obligatorio")
     @Size(max = 50, message = "Los apellidos no puede tener más de 100 caracteres")
     private String lastName;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El correo electrónico es obligatorio")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, RegisterUser.class}, message = "El correo electrónico es obligatorio")
     @Email(message = "El correo electrónico no es válido")
     private String email;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "El teléfono es obligatorio")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, Modify.class, RegisterUser.class}, message = "El teléfono es obligatorio")
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "El teléfono no es válido")
     private String phone;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class}, message = "La contraseña es obligatoria")
+    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class,UpdatePassword.class, RegisterUser.class}, message = "La contraseña es obligatoria")
     @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String password;
+    @NotBlank(groups = {RegisterAdmin.class}, message = "El nombre de la compañia es obligatorio")
+    private String company;
+    @NotBlank(groups = {RegisterUser.class}, message  = "El genero es obligatorio")
+    private String gender;
+    @NotNull(groups = {RegisterUser.class}, message  = "La fecha de cumpleaños es obligatoria")
+    private Date birthday;
+    @NotBlank(groups = {RegisterUser.class}, message  = "La residencia es obligatoria")
+    private String address;
+    @NotBlank(groups = {RegisterUser.class}, message  = "El motivo de como se entero es obligatorio")
+    private String howFound;
+    @NotBlank(groups = {RegisterUser.class}, message  = "El trabajo es obligatoio")
+    private String job;
+    @NotBlank(groups = {RegisterUser.class}, message  = "El lugar de trabajo es obligatorio")
+    private String workPlace;
+    @NotNull(groups ={RegisterChecker.class}, message = "El id del administrador es requerido")
+    private User sentByUser;
+
     private Role role;
     private String code;
     private boolean status;
-    @NotBlank(groups = {RegisterAdmin.class}, message = "El nombre de la compañia es obligatorio")
-    private String company;
-    private String gender;
-    private Date birthday;
-    private String address;
-    private String howFound;
-    private String job;
-    private String workPlace;
-
-    @NotNull(message = "El usuario que registra al checador es obligatorio")
-    private User sentByUser;
 
     public UserDTO() {}
 
@@ -183,7 +190,13 @@ public class UserDTO {
 
     public interface RegisterChecker {}
 
+    public interface RegisterUser{}
+
     public interface Modify {
+    }
+
+    public interface UpdatePassword {
+
     }
 
     public interface ChangeStatus {

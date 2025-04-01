@@ -24,14 +24,20 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("/findId/{userId}")
+    public ResponseEntity<Message> getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+
     @GetMapping("/findAllAdmins")
     public ResponseEntity<Message> getAllAdmins() {
         return userService.findAllAdmins();
     }
 
-    @GetMapping("/findByBoss")
-    public ResponseEntity<Message> getByBoss(@Validated @RequestBody UserDTO userDTO) {
-        return userService.findByBoss(userDTO);
+    @GetMapping("/findByBoss/{bossId}")
+    public ResponseEntity<Message> getByBoss(@PathVariable Long bossId) {
+        return userService.findByBossId(bossId);
     }
 
     @PostMapping("/saveAdmin")
@@ -42,6 +48,21 @@ public class UserController {
     @PostMapping("/saveChecker")
     public  ResponseEntity<Message> saveChecker(@Validated(UserDTO.RegisterChecker.class)@RequestBody UserDTO userDTO) {
         return userService.saveChecker(userDTO);
+    }
+
+    @PostMapping("/saveUser")
+    public ResponseEntity<Message> saveUser(@Validated(UserDTO.RegisterUser.class)@RequestBody UserDTO userDTO) {
+        return userService.saveUser(userDTO);
+    }
+
+    @PutMapping("/updateUser")
+    public ResponseEntity<Message> updateUser(@Validated(UserDTO.Modify.class)@RequestBody UserDTO userDTO) {
+        return userService.updateUser(userDTO);
+    }
+
+    @PutMapping("/updatePassword")
+    public ResponseEntity<Message> updatePassword(@Validated(UserDTO.UpdatePassword.class)@RequestBody UserDTO userDTO) {
+        return userService.updatePassword(userDTO);
     }
 
     @PutMapping("/change-status")

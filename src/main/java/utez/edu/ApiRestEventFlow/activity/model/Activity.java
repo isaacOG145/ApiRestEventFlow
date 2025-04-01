@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Activity {
 
     @ManyToOne
     @JoinColumn(name = "owner_activity", referencedColumnName = "user_id")
-    private User ownerActivity; // Renombrado para ser más descriptivo
+    private User ownerActivity;
 
     @Column(name = "speaker", columnDefinition = "VARCHAR(150)")
     private String speaker;
@@ -31,16 +32,25 @@ public class Activity {
     @Column(name = "description", columnDefinition = "VARCHAR(100)")
     private String description;
 
+    @Column(name ="quota", columnDefinition = "NUMERIC")
+    private Integer quota;
+
     @Column(name = "date", columnDefinition = "DATE")
-    private Date date; // Usado solo para eventos
+    private LocalDate date; // Usado solo para eventos
 
     @Column(name = "time", columnDefinition = "TIME")
     private LocalTime time; // Usado solo para talleres
 
     @ElementCollection
     @CollectionTable(name = "activity_images", joinColumns = @JoinColumn(name = "activity_id"))
-    @Column(name = "image_path", columnDefinition = "VARCHAR(255)")
-    private List<String> imagePaths = new ArrayList<>();
+    @Column(name = "image_url", columnDefinition = "VARCHAR(255)")
+    private List<String> imageUrls = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "from_activity", referencedColumnName = "activity_id")
+    private Activity fromActivity;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_activity", columnDefinition = "VARCHAR(10)")
@@ -93,11 +103,19 @@ public class Activity {
         this.description = description;
     }
 
-    public Date getDate() {
+    public Integer getQuota() {
+        return quota;
+    }
+
+    public void setQuota(Integer quota) {
+        this.quota = quota;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -109,12 +127,13 @@ public class Activity {
         this.time = time;
     }
 
-    public List<String> getImagePaths() {
-        return imagePaths;
+    // Getters y Setters para imageUrls
+    public List<String> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImagePaths(List<String> imagePaths) {
-        this.imagePaths = imagePaths;
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public TypeActivity getTypeActivity() {
@@ -131,5 +150,13 @@ public class Activity {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Activity getFromActivity() {
+        return fromActivity;
+    }
+
+    public void setFromActivity(Activity fromActivity) {
+        this.fromActivity = fromActivity;
     }
 }
