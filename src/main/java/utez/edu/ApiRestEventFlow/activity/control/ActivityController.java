@@ -2,6 +2,7 @@ package utez.edu.ApiRestEventFlow.activity.control;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,29 +29,46 @@ public class ActivityController {
         this.activityImageService = activityImageService;
     }
 
+    //buscar todos
     @GetMapping("/findAll")
     public ResponseEntity<Message> getAllActivities() {
         return activityService.findAll();
     }
-
-    @GetMapping("/findAllEvents")
+    //mostrar todos los eventos activos
+    @GetMapping("/findActiveEvents")
     public ResponseEntity<Message> getAllEvents() {
         return activityService.findAllEvents();
     }
+    //mostrar todos los talleres activos
+    @GetMapping("/findActiveWorkshops")
+    public ResponseEntity<Message> getAllWorkshops() {
+        return activityService.findAllWorkshops();
+    }
 
+    //buscar eventos por id
+    @GetMapping("event/findById/{id}")
+    public ResponseEntity<Message> getEventById(@PathVariable Long id) {
+        return activityService.findById(id);
+    }
+    //buscar talleres por id
+    @GetMapping("workShop/findById/{id}")
+    public ResponseEntity<Message> getWorkshopById(@PathVariable Long id) {
+        return activityService.findWorkShopById(id);
+    }
+    //buscar todos los talleres de un usuario
     @GetMapping("/events/byOwner/{ownerId}")
     public ResponseEntity<Message> getEventsByOwner(@PathVariable Long ownerId) {
         return activityService.findEventsByOwner(ownerId);
     }
-
+    //buscar todos los talleres de un usuario
     @GetMapping("/workshops/byOwner/{ownerId}")
     public ResponseEntity<Message> getWorkshopsByOwner(@PathVariable Long ownerId) {
         return activityService.findWorkshopsByOwner(ownerId);
     }
-
-    @GetMapping("/findByEvent")
-    public ResponseEntity<Message> getByEvent(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.findByFromActivity(activityDTO);
+    //buscar talleres por evento asociado
+    @GetMapping("/findByEvent/{id}")
+    public ResponseEntity<Message> getByEvent(@PathVariable Long id) {
+        return activityService.findByFromActivity(id);
     }
 
     @PostMapping("/saveEvent")
@@ -69,15 +87,23 @@ public class ActivityController {
         return activityService.saveWorkshop(activityDTO);
     }
 
-    @PutMapping("/updateEvent")
-    public ResponseEntity<Message> updateEvent(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.updateEvent(activityDTO);
+    @PutMapping(value = "/updateEvent", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Message> updateEvent(
+            @Validated(ActivityDTO.ModifyEvent.class) @RequestPart("activity") ActivityDTO activityDTO,
+            @RequestPart(value = "images", required = false) List<MultipartFile> newImages) {
+
+        return activityService.updateEvent(activityDTO, newImages);
     }
 
     @PutMapping("/updateWorkshop")
-    public ResponseEntity<Message> updateWorkshop(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.updateWorkshop(activityDTO);
+    public ResponseEntity<Message> updateWorkshop(
+            @Validated @RequestPart("activity") ActivityDTO activityDTO,
+            @RequestPart(value = "images", required = false) List<MultipartFile> newImages) {
+
+        return activityService.updateWorkshop(activityDTO, newImages);
     }
+
+
 
     // Agregar imágenes a un evento
     @PostMapping("/{id}/addImages")

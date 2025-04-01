@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.user.model.User;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Activity {
     private Integer quota;
 
     @Column(name = "date", columnDefinition = "DATE")
-    private Date date; // Usado solo para eventos
+    private LocalDate date; // Usado solo para eventos
 
     @Column(name = "time", columnDefinition = "TIME")
     private LocalTime time; // Usado solo para talleres
@@ -110,11 +111,11 @@ public class Activity {
         this.quota = quota;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

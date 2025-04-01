@@ -6,8 +6,11 @@ import org.springframework.data.repository.query.Param;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
+
+    Optional<Activity> findById(Long id);
 
     List<Activity> findByTypeActivity(TypeActivity typeActivity);
 
@@ -22,6 +25,12 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     // Método para buscar talleres por dueño
     @Query("SELECT a FROM Activity a WHERE a.ownerActivity.id = :ownerId AND a.typeActivity = 'WORKSHOP'")
     List<Activity> findWorkshopsByOwner(@Param("ownerId") Long ownerId);
+
+    @Query("SELECT a FROM Activity a WHERE a.typeActivity = 'EVENT' AND a.status = true")
+    List<Activity> findActiveEvents();
+
+    @Query("SELECT a FROM Activity a WHERE a.typeActivity = 'WORKSHOP' AND a.status = true")
+    List<Activity> findActiveWorkshops();
 
 
 }
