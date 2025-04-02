@@ -129,8 +129,8 @@ public class ActivityController {
         return activityImageService.updateImages(id, images);
     }
 
-    @PutMapping("/change-status")
-    public ResponseEntity<Message> changeStatus(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.changeStatus(activityDTO);
+    @PutMapping("/change-status/{id}")
+    public ResponseEntity<Message> changeStatus(@Validated @PathVariable Long id) {
+        return activityService.changeStatus(id);
     }
 }

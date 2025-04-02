@@ -533,26 +533,25 @@ public class ActivityService {
         }
     }
 
-
-
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> changeStatus(ActivityDTO activityDTO) {
+    public ResponseEntity<Message> changeStatus(Long activityId) {
         try {
-            Activity activity = activityRepository.findById(activityDTO.getId())
+            // Buscar la actividad por el ID
+            Activity activity = activityRepository.findById(activityId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
 
-            if (!activity.getTypeActivity().equals(TypeActivity.EVENT) && !activity.getTypeActivity().equals(TypeActivity.WORKSHOP)) {
-                throw new ValidationException("Solo se puede cambiar el estado de eventos o talleres");
-            }
-
+            // Cambiar el estado
             boolean newStatus = !activity.isStatus();
             activity.setStatus(newStatus);
 
+            // Crear mensaje de éxito
             String statusMessage = newStatus ? "Activo" : "Inactivo";
             String successMessage = ErrorMessages.SUCCESFUL_CHANGE_STATUS + statusMessage;
 
+            // Guardar la actividad con el nuevo estado
             activity = activityRepository.saveAndFlush(activity);
 
+            // Retornar respuesta exitosa
             return new ResponseEntity<>(new Message(activity, successMessage, TypesResponse.SUCCESS), HttpStatus.OK);
 
         } catch (ValidationException e) {
@@ -561,4 +560,5 @@ public class ActivityService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

@@ -260,19 +260,24 @@ public class UserService {
 
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> changeStatus(UserDTO userDTO) {
+    public ResponseEntity<Message> changeStatus(Long userId) {
         try {
-            User user = userRepository.findById(userDTO.getId())
+            // Buscar el usuario por ID
+            User user = userRepository.findById(userId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
 
+            // Cambiar el estado del usuario
             boolean newStatus = !user.isStatus();
             user.setStatus(newStatus);
 
+            // Crear mensaje de éxito
             String statusMessage = newStatus ? "Activo" : "Inactivo";
             String successMessage = ErrorMessages.SUCCESFUL_CHANGE_STATUS + statusMessage;
 
+            // Guardar el usuario con el nuevo estado
             user = userRepository.saveAndFlush(user);
 
+            // Retornar respuesta exitosa
             return new ResponseEntity<>(new Message(user, successMessage, TypesResponse.SUCCESS), HttpStatus.OK);
         } catch (ValidationException e) {
             return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
@@ -280,5 +285,6 @@ public class UserService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 }
