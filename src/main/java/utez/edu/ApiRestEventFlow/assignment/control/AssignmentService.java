@@ -117,11 +117,13 @@ public class AssignmentService {
             Assignment newAssignment = new Assignment();
             newAssignment.setUser(checker);
             newAssignment.setActivity(activityAssignment);
+            newAssignment.setOwner(activityAssignment.getOwnerActivity().getId());
 
             Assignment savedAssignment = assignmentRepository.save(newAssignment);
 
             AssignmentDTO responseDTO = new AssignmentDTO(
                     savedAssignment.getId(),
+                    savedAssignment.getOwner(),
                     savedAssignment.getUser().getId(),
                     savedAssignment.getActivity().getId()
             );

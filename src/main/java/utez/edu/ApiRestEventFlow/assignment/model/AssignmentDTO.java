@@ -2,6 +2,7 @@ package utez.edu.ApiRestEventFlow.assignment.model;
 
 public class AssignmentDTO {
     private Long assignmentId;
+    private Long ownerId;
     private Long userId;
     private Long activityId;
     private boolean status;
@@ -10,8 +11,9 @@ public class AssignmentDTO {
     public AssignmentDTO() {}
 
     // Constructor con parámetros
-    public AssignmentDTO(Long assignmentId, Long userId, Long activityId) {
+    public AssignmentDTO(Long assignmentId,Long ownerId, Long userId, Long activityId) {
         this.assignmentId = assignmentId;
+        this.ownerId = ownerId;
         this.userId = userId;
         this.activityId = activityId;
     }
@@ -27,6 +29,14 @@ public class AssignmentDTO {
 
     public Long getUserId() {
         return userId;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public void setUserId(Long userId) {
