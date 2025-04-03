@@ -44,6 +44,12 @@ public class AssignmentService {
         }
     }
 
+    private void validateAdmin(User owner) {
+        if (!owner.getRole().equals(Role.ADMIN)) {
+            throw new ValidationException(ErrorMessages.IS_NOT_ADMIM);
+        }
+    }
+
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findAll() {
         try {
@@ -101,6 +107,74 @@ public class AssignmentService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findEventByOwnerId(Long id) {
+        try {
+            // Validar que el owner existe y es ADMIN
+            User owner = userRepository.findById(id)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
+            validateAdmin(owner);
+
+            // Obtener las actividades de tipo 'EVENT' del ownerId
+            List<Activity> events = activityRepository.findEventsByOwner(id);
+
+            // Si no se encontraron eventos
+            if (events.isEmpty()) {
+                return new ResponseEntity<>(new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+            }
+
+            // Buscar las asignaciones para las actividades obtenidas
+            List<Assignment> assignments = assignmentRepository.findByOwnerAndActivityIn(id, events);
+
+            // Si no se encontraron asignaciones
+            if (assignments.isEmpty()) {
+                return new ResponseEntity<>(new Message(ErrorMessages.ASSIGNMENTS_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(new Message(assignments, "Lista de asignaciones para el owner", TypesResponse.SUCCESS), HttpStatus.OK);
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findWorkshopByOwnerId(Long id) {
+        try {
+            // Validar que el owner existe y es ADMIN
+            User owner = userRepository.findById(id)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
+            validateAdmin(owner);
+
+            // Obtener las actividades de tipo 'EVENT' del ownerId
+            List<Activity> workshops = activityRepository.findWorkshopsByOwner(id);
+
+            // Si no se encontraron eventos
+            if (workshops.isEmpty()) {
+                return new ResponseEntity<>(new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+            }
+
+            // Buscar las asignaciones para las actividades obtenidas
+            List<Assignment> assignments = assignmentRepository.findByOwnerAndActivityIn(id, workshops);
+
+            // Si no se encontraron asignaciones
+            if (assignments.isEmpty()) {
+                return new ResponseEntity<>(new Message(ErrorMessages.ASSIGNMENTS_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
+            }
+
+            return new ResponseEntity<>(new Message(assignments, "Lista de asignaciones para el owner", TypesResponse.SUCCESS), HttpStatus.OK);
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 
 

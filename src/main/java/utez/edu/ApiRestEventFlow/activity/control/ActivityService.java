@@ -132,6 +132,43 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
+    public ResponseEntity<Message> findAllActiveByOwner(Long ownerId) {
+        try{
+            // Validar que el owner existe y es ADMIN
+            User owner = userRepository.findById(ownerId)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
+            validateAdmin(owner);
+
+            List<Activity> activities = activityRepository.findByOwnerActivityIdAndActive(ownerId);
+
+            if (activities.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
+            }
+
+            return new ResponseEntity<>(
+                    new Message(activities, "Talleres encontrados", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+
+
+
+        }catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message("Error interno del servidor", TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @Transactional(readOnly = true)
     public ResponseEntity<Message> findById(Long eventId) {
         try {
             // Buscar el evento por su ID

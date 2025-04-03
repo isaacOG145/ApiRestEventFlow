@@ -45,6 +45,11 @@ public class ActivityController {
         return activityService.findAllWorkshops();
     }
 
+    @GetMapping("/findAllActive/byOwner/{ownerid}")
+    public ResponseEntity<Message> getAllActiveByOwner(@PathVariable Long ownerid) {
+        return activityService.findAllActiveByOwner(ownerid);
+    }
+
     //buscar eventos por id
     @GetMapping("event/findById/{id}")
     public ResponseEntity<Message> getEventById(@PathVariable Long id) {

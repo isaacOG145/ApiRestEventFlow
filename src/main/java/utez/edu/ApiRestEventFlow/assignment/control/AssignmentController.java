@@ -33,6 +33,16 @@ public class AssignmentController {
         return assignmentService.findByChecker(assignmentDTO);
     }
 
+    @GetMapping("/events/findByOwner/{ownerId}")
+    public ResponseEntity<Message> findEventByOwnerId(@PathVariable Long ownerId) {
+        return assignmentService.findEventByOwnerId(ownerId);
+    }
+
+    @GetMapping("/workshops/findByOwner/{ownerId}")
+    public ResponseEntity<Message> findWorkshopByOwnerId(@PathVariable Long ownerId) {
+        return assignmentService.findWorkshopByOwnerId(ownerId);
+    }
+
     @PostMapping("/saveAssignment")
     public ResponseEntity<Message> saveAssignment(@Validated @RequestBody AssignmentDTO assignmentDTO) {
         return assignmentService.saveAssignment(assignmentDTO);
