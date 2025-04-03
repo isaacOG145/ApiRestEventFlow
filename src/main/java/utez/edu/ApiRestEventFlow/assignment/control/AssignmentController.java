@@ -23,6 +23,11 @@ public class AssignmentController {
         return assignmentService.findAll();
     }
 
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Message> getById(@PathVariable Long id) {
+        return assignmentService.findById(id);
+    }
+
     @GetMapping("/findByActivity")
     public ResponseEntity<Message> findByActivity(@Validated @RequestBody AssignmentDTO assignmentDTO) {
         return assignmentService.findByEvent(assignmentDTO);
@@ -48,8 +53,13 @@ public class AssignmentController {
         return assignmentService.saveAssignment(assignmentDTO);
     }
 
-    @PutMapping("/changeStatus")
-    public ResponseEntity<Message> changeStatus(@Validated @RequestBody AssignmentDTO assignmentDTO) {
-        return assignmentService.changeStatus(assignmentDTO);
+    @PutMapping("/update")
+    public ResponseEntity<Message> updateAssignment(@Validated @RequestBody AssignmentDTO assignmentDTO) {
+        return assignmentService.updateAssignment(assignmentDTO);
+    }
+
+    @PutMapping("/change-status/{id}")
+    public ResponseEntity<Message> changeStatus(@Validated @PathVariable Long id) {
+        return assignmentService.changeStatus(id);
     }
 }
