@@ -16,8 +16,6 @@ public class UserActivityDTO {
     @NotNull(groups = {register.class}, message = "ID de la actividad es requerida")
     private Long activityId;
 
-    private Long fromActivityId;
-
     private String token;
 
     private boolean verified;
@@ -46,14 +44,6 @@ public class UserActivityDTO {
 
     public void setActivityId(Long activityId) {
         this.activityId = activityId;
-    }
-
-    public Long getFromActivityId() {
-        return fromActivityId;
-    }
-
-    public void setFromActivityId(Long fromActivityId) {
-        this.fromActivityId = fromActivityId;
     }
 
     public String getToken() {

@@ -21,9 +21,6 @@ public class UserActivity {
     @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", nullable = false)
     private Activity activity;
 
-    @Column(name = "from_activity")
-    private Long fromActivityId;
-
     @Column(name = "token", columnDefinition = "VARCHAR(36)")
     private String token;
 
@@ -58,14 +55,6 @@ public class UserActivity {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
-    }
-
-    public Long getFromActivityId() {
-        return fromActivityId;
-    }
-
-    public void setFromActivityId(Long fromActivityId) {
-        this.fromActivityId = fromActivityId;
     }
 
     public String getToken() {

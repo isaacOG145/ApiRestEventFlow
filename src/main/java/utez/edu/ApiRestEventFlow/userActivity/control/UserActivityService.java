@@ -66,7 +66,6 @@ public class UserActivityService {
             UserActivity userActivity = new UserActivity();
             userActivity.setUser(user);
             userActivity.setActivity(activity);
-            userActivity.setFromActivityId(activity.getFromActivity().getId());
             userActivity.setVerified(false);
 
             String token = UUID.randomUUID().toString();  // Genera un token único
@@ -89,6 +88,41 @@ public class UserActivityService {
             );
         }
     }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findByToken(String token) {
+        try {
+            Optional<UserActivity> userActivityOptional = userActivityRepository.findByToken(token);
+
+            if (userActivityOptional.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.INVITATION_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.NOT_FOUND
+                );
+            }
+
+            UserActivity userActivity = userActivityOptional.get();
+            return new ResponseEntity<>(
+                    new Message(userActivity, "Actividad de usuario encontrada", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<Message> confirmateInvitation(UUID invitationId) {
+        return new ResponseEntity<>(
+                new Message(invitationId, "Actividad de usuario encontrada", TypesResponse.SUCCESS),
+                HttpStatus.OK
+        );
+    }
+
+
 
 
 

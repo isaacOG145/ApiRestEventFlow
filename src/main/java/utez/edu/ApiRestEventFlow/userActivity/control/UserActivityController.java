@@ -32,4 +32,14 @@ public class UserActivityController {
     public ResponseEntity<Message> saveActivity(@Validated(UserActivityDTO.register.class)@RequestBody UserActivityDTO userActivityDTO) {
         return userActivityService.saveInvitation(userActivityDTO);
     }
+
+    @GetMapping("/findByToken/{token}")
+    public ResponseEntity<Message> findActivityByToken(@PathVariable String token) {
+        return userActivityService.findByToken(token);
+    }
+
+    @PutMapping("/confirmate")
+    public ResponseEntity<Message> confirmActivity(@RequestBody UserActivityDTO userActivityDTO) {
+        return UserActivityService.confirmateInvitation(userActivityDTO);
+    }
 }
