@@ -13,6 +13,8 @@ public class ErrorMessages {
     public static final String IS_NOT_CHECKER = "El usuario no es un checador";
     public static final String SAME_PASSWORD = "La nueva contraseña no puede ser igual a la anterior";
     public static final String INTERNAL_SERVER_ERROR = "Error interno del servidor";
+    public static final String INVITATION_NOT_FOUND = "No se encontro la invitacion";
+    public static final String INVITATIONS_NOT_FOUND = "No se encontraron invitaciones";
     public static final String ACTIVITY_NOT_FOUND = "No se encontro la actividad";
     public static final String ACTIVITIES_NOT_FOUND = "No se encontraron actividades";
     public static final String ASSIGNMENT_NOT_FOUND = "No se encontró la asignacion";

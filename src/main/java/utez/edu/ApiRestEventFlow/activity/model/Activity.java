@@ -62,6 +62,10 @@ public class Activity {
     // Constructor vacío
     public Activity() {}
 
+    public Activity(Long id){
+        this.id = id;
+    }
+
     // Getters y Setters
     public Long getId() {
         return id;

@@ -21,6 +21,15 @@ public class UserActivity {
     @JoinColumn(name = "activity_id", referencedColumnName = "activity_id", nullable = false)
     private Activity activity;
 
+    @Column(name = "from_activity")
+    private Long fromActivityId;
+
+    @Column(name = "token", columnDefinition = "VARCHAR(36)")
+    private String token;
+
+    @Column(name = "verified", columnDefinition = "BOOL DEFAULT FALSE")
+    private boolean verified;
+
 
     // Constructor vacío
     public UserActivity() {}
@@ -51,4 +60,27 @@ public class UserActivity {
         this.activity = activity;
     }
 
+    public Long getFromActivityId() {
+        return fromActivityId;
+    }
+
+    public void setFromActivityId(Long fromActivityId) {
+        this.fromActivityId = fromActivityId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
 }
