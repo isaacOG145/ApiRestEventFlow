@@ -20,6 +20,8 @@ public class UserActivityDTO {
 
     private boolean verified;
 
+    private boolean status;
+
     public UserActivityDTO() {}
 
     public Long getId() {
@@ -61,9 +63,18 @@ public class UserActivityDTO {
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
-    public interface register{}
 
-    public interface modify{}
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+
+
+    public interface register{}
 
     public interface ChangeStatus {}
 }

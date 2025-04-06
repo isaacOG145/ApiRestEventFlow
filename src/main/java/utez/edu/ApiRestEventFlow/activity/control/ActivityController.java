@@ -56,7 +56,7 @@ public class ActivityController {
         return activityService.findById(id);
     }
     //buscar talleres por id
-    @GetMapping("workShop/findById/{id}")
+    @GetMapping("workshop/findById/{id}")
     public ResponseEntity<Message> getWorkshopById(@PathVariable Long id) {
         return activityService.findWorkShopById(id);
     }

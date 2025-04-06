@@ -27,6 +27,9 @@ public class UserActivity {
     @Column(name = "verified", columnDefinition = "BOOL DEFAULT FALSE")
     private boolean verified;
 
+    @Column(name = "status", columnDefinition = "BOOL DEFAULT TRUE")
+    private boolean status;
+
 
     // Constructor vacío
     public UserActivity() {}
@@ -71,5 +74,13 @@ public class UserActivity {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

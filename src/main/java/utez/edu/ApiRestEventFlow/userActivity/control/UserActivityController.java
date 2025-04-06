@@ -28,9 +28,14 @@ public class UserActivityController {
         return userActivityService.findAll();
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<Message> saveActivity(@Validated(UserActivityDTO.register.class)@RequestBody UserActivityDTO userActivityDTO) {
-        return userActivityService.saveInvitation(userActivityDTO);
+    @GetMapping("/findByActivity/{id}")
+    public ResponseEntity<Message> findByActivity(@PathVariable Long id) {
+        return userActivityService.findByActivity(id);
+    }
+
+    @GetMapping("/findByUser/{id}")
+    public ResponseEntity<Message> findByUser(@PathVariable Long id) {
+        return userActivityService.findByUser(id);
     }
 
     @GetMapping("/findByToken/{token}")
@@ -38,8 +43,13 @@ public class UserActivityController {
         return userActivityService.findByToken(token);
     }
 
+    @PostMapping("/save")
+    public ResponseEntity<Message> saveActivity(@Validated(UserActivityDTO.register.class)@RequestBody UserActivityDTO userActivityDTO) {
+        return userActivityService.registerForEvent(userActivityDTO);
+    }
+
     @PutMapping("/confirmate")
     public ResponseEntity<Message> confirmActivity(@RequestBody UserActivityDTO userActivityDTO) {
-        return UserActivityService.confirmateInvitation(userActivityDTO);
+        return userActivityService.confirmateInvitation(userActivityDTO);
     }
 }
