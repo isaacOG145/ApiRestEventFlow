@@ -13,6 +13,9 @@ public class Assignment {
     @Column(name = "assignment_id")
     private Long id;
 
+    @JoinColumn(name = "owner_id", referencedColumnName = "owner_id", nullable = false)
+    private Long owner;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User user;
@@ -27,7 +30,8 @@ public class Assignment {
 
     public Assignment() {}
 
-    public Assignment(User user, Activity activity) {
+    public Assignment(Long owner,User user, Activity activity) {
+        this.owner = owner;
         this.user = user;
         this.activity = activity;
     }
@@ -38,6 +42,14 @@ public class Assignment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Long owner) {
+        this.owner = owner;
     }
 
     public User getUser() {

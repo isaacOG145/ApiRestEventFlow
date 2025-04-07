@@ -60,7 +60,7 @@ public class User {
     @Column(name = "birthday", columnDefinition = "DATE")
     private Date birthday;
 
-    @Column(name = "address", columnDefinition = "VARCHAR(100)")
+    @Column(name = "address", columnDefinition = "VARCHAR(255)")
     private String address;
 
     @Column(name = "how_found", columnDefinition = "VARCHAR(50)")
@@ -69,7 +69,7 @@ public class User {
     @Column(name = "job", columnDefinition = "VARCHAR(50)")
     private String job;
 
-    @Column(name = "work_place", columnDefinition = "VARCHAR(50)")
+    @Column(name = "work_place", columnDefinition = "VARCHAR(255)")
     private String workPlace;
 
     public User() {}
