@@ -169,7 +169,31 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<Message> findById(Long eventId) {
+    public ResponseEntity<Message> findById(Long id) {
+        try {
+            // Buscar el evento por su ID
+            Activity activity = activityRepository.findById(id)
+                    .orElseThrow(() -> new ValidationException("Evento no encontrado"));
+
+            return new ResponseEntity<>(
+                    new Message(activity, "Evento encontrado", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message("Error interno del servidor", TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findByEventId(Long eventId) {
         try {
             // Buscar el evento por su ID
             Activity event = activityRepository.findById(eventId)
@@ -326,6 +350,7 @@ public class ActivityService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
     @Transactional(rollbackFor = {SQLException.class})

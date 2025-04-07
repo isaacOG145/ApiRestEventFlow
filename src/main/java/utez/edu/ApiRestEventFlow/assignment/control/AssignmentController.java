@@ -3,7 +3,6 @@ package utez.edu.ApiRestEventFlow.assignment.control;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import utez.edu.ApiRestEventFlow.activity.model.ActivityDTO;
 import utez.edu.ApiRestEventFlow.assignment.model.AssignmentDTO;
 import utez.edu.ApiRestEventFlow.utils.Message;
 
@@ -28,9 +27,15 @@ public class AssignmentController {
         return assignmentService.findById(id);
     }
 
-    @GetMapping("/findByActivity")
-    public ResponseEntity<Message> findByActivity(@Validated @RequestBody AssignmentDTO assignmentDTO) {
-        return assignmentService.findByEvent(assignmentDTO);
+    @GetMapping("/findByActivity/{id}")
+    public ResponseEntity<Message> findByActivity(@PathVariable Long id) {
+        return assignmentService.findByEvent(id);
+    }
+
+    @GetMapping("/findAssignmentsByActivity/{id}")
+    public ResponseEntity<Message> findAssignmentsByActivity(@PathVariable Long id) {
+        // Llamamos al servicio para obtener las asignaciones del evento y talleres
+        return assignmentService.findAssignmentsByActivity(id);
     }
 
     @GetMapping("/findByChecker")

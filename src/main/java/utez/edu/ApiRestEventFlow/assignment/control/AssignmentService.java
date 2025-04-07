@@ -14,6 +14,7 @@ import utez.edu.ApiRestEventFlow.activity.model.ActivityRepository;
 import utez.edu.ApiRestEventFlow.assignment.model.Assignment;
 import utez.edu.ApiRestEventFlow.assignment.model.AssignmentDTO;
 import utez.edu.ApiRestEventFlow.assignment.model.AssignmentRepository;
+import utez.edu.ApiRestEventFlow.assignment.model.AssignmentWithWorkshopsDTO;
 import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserDTO;
 import utez.edu.ApiRestEventFlow.user.model.UserRepository;
@@ -23,6 +24,7 @@ import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AssignmentService {
@@ -76,14 +78,13 @@ public class AssignmentService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<Message> findByEvent(AssignmentDTO assignmentDTO) {
+    public ResponseEntity<Message> findByEvent(Long id) {
         try {
 
-            if (activityRepository.findById(assignmentDTO.getActivityId()).isEmpty()) {
-                throw new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND);
-            }
-            // Buscar asignaciones por ID de actividad
-            List<Assignment> assignments = assignmentRepository.findByActivityId(assignmentDTO.getActivityId());
+            Activity activity = activityRepository.findById(id)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
+
+            List<Assignment> assignments = assignmentRepository.findByActivityId(id);
 
             if (assignments.isEmpty()) {
                 return new ResponseEntity<>(new Message(ErrorMessages.ASSIGNMENTS_NOT_FOUND, TypesResponse.WARNING), HttpStatus.OK);
@@ -96,6 +97,60 @@ public class AssignmentService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findAssignmentsByActivity(Long id) {
+        try {
+            // Buscar la actividad principal (evento)
+            Activity event = activityRepository.findById(id)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
+
+            // Obtener las asignaciones del evento
+            List<Assignment> eventAssignments = assignmentRepository.findByActivityId(id);
+
+            // Obtener las actividades hijas (talleres) asociadas al evento
+            List<Activity> workshops = activityRepository.findByFromActivity_Id(id);
+
+            // Obtener las asignaciones de los talleres
+            List<Assignment> workshopAssignments = workshops.stream()
+                    .flatMap(workshop -> assignmentRepository.findByActivityId(workshop.getId()).stream())
+                    .collect(Collectors.toList());
+
+            // Convertir las asignaciones a DTO
+            List<AssignmentDTO> eventAssignmentDTOs = eventAssignments.stream()
+                    .map(assignment -> new AssignmentDTO(
+                            assignment.getId(),
+                            assignment.getOwner(),
+                            assignment.getUser().getId(),
+                            assignment.getActivity().getId()))
+                    .collect(Collectors.toList());
+
+            List<AssignmentDTO> workshopAssignmentDTOs = workshopAssignments.stream()
+                    .map(assignment -> new AssignmentDTO(
+                            assignment.getId(),
+                            assignment.getOwner(),
+                            assignment.getUser().getId(),
+                            assignment.getActivity().getId()))
+                    .collect(Collectors.toList());
+
+            // Crear el DTO de la respuesta
+            AssignmentWithWorkshopsDTO responseDTO = new AssignmentWithWorkshopsDTO(
+                    id,
+                    event.getName(),
+                    eventAssignmentDTOs,
+                    workshopAssignmentDTOs
+            );
+
+            return new ResponseEntity<>(new Message(responseDTO, "Asignaciones del evento y talleres", TypesResponse.SUCCESS), HttpStatus.OK);
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findByChecker(AssignmentDTO assignmentDTO) {

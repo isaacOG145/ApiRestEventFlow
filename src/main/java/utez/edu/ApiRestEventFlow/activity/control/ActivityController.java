@@ -48,12 +48,17 @@ public class ActivityController {
     @GetMapping("/findAllActive/byOwner/{ownerid}")
     public ResponseEntity<Message> getAllActiveByOwner(@PathVariable Long ownerid) {
         return activityService.findAllActiveByOwner(ownerid);
+
+    }
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Message> findById(@PathVariable Long id) {
+        return activityService.findById(id);
     }
 
     //buscar eventos por id
     @GetMapping("event/findById/{id}")
     public ResponseEntity<Message> getEventById(@PathVariable Long id) {
-        return activityService.findById(id);
+        return activityService.findByEventId(id);
     }
     //buscar talleres por id
     @GetMapping("workshop/findById/{id}")
