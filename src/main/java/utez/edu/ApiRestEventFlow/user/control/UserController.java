@@ -65,9 +65,9 @@ public class UserController {
         return userService.updatePassword(userDTO);
     }
 
-    @PutMapping("/change-status")
-    public ResponseEntity<Message> changeStatus(@Validated(UserDTO.ChangeStatus.class) @RequestBody UserDTO userDTO) {
-        return userService.changeStatus(userDTO);
+    @PutMapping("/change-status/{id}")
+    public ResponseEntity<Message> changeStatus(@Validated(UserDTO.ChangeStatus.class) @PathVariable Long id) {
+        return userService.changeStatus(id);
     }
 
 

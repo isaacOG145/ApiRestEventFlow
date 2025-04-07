@@ -51,6 +51,75 @@ public class UserService {
         }
     }
 
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<Message> saveUser(UserDTO userDTO) {
+        try {
+
+
+
+            if (userRepository.existsByEmail(userDTO.getEmail())) {
+
+                Optional<User> existingUserOpt = userRepository.findByEmail(userDTO.getEmail());
+                if (existingUserOpt.isPresent()) {
+                    User existingUser = existingUserOpt.get();
+                    return updateUser(existingUser, userDTO);
+                } else {
+                    // Si no se encuentra el usuario a pesar de que existe (caso muy raro), respondemos con error.
+                    return new ResponseEntity<>(new Message("User not found, please contact support", TypesResponse.ERROR), HttpStatus.NOT_FOUND);
+                }
+            } else {
+                // Si el usuario no existe, lo creamos
+                return registerNewUser(userDTO);
+            }
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private ResponseEntity<Message> registerNewUser(UserDTO userDTO) {
+        // Crear un nuevo usuario y guardarlo en la base de datos
+        User newUser = new User();
+        newUser.setName(userDTO.getName());
+        newUser.setLastName(userDTO.getLastName());
+        newUser.setEmail(userDTO.getEmail());
+        newUser.setPhone(userDTO.getPhone());
+        newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        newUser.setRole(Role.USER);
+        newUser.setBirthday(userDTO.getBirthday());
+        newUser.setAddress(userDTO.getAddress());
+        newUser.setHowFound(userDTO.getHowFound());
+        newUser.setJob(userDTO.getJob());
+        newUser.setWorkPlace(userDTO.getWorkPlace());
+        newUser.setGender(userDTO.getGender());
+        newUser.setStatus(true);
+
+        newUser = userRepository.saveAndFlush(newUser);
+
+        return new ResponseEntity<>(new Message(newUser, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+    private ResponseEntity<Message> updateUser(User existingUser, UserDTO userDTO) {
+        // Actualizar los datos del usuario existente
+        existingUser.setName(userDTO.getName());
+        existingUser.setLastName(userDTO.getLastName());
+        existingUser.setPhone(userDTO.getPhone());
+        existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword())); // Si se actualiza la contraseña
+        existingUser.setBirthday(userDTO.getBirthday());
+        existingUser.setAddress(userDTO.getAddress());
+        existingUser.setHowFound(userDTO.getHowFound());
+        existingUser.setJob(userDTO.getJob());
+        existingUser.setWorkPlace(userDTO.getWorkPlace());
+        existingUser.setGender(userDTO.getGender());
+        existingUser.setStatus(true); // Puede cambiar si la lógica lo requiere
+
+        userRepository.saveAndFlush(existingUser);
+
+        return new ResponseEntity<>(new Message(existingUser, ErrorMessages.SUCCESFUL_UPDATE, TypesResponse.SUCCESS), HttpStatus.OK);
+    }
+
+
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findAll() {
         try {
@@ -184,34 +253,7 @@ public class UserService {
         }
     }
 
-    @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> saveUser (UserDTO userDTO) {
-        try{
-            validateEmailAndPhone(userDTO);
 
-            User newUser = new User();
-            newUser.setName(userDTO.getName());
-            newUser.setLastName(userDTO.getLastName());
-            newUser.setEmail(userDTO.getEmail());
-            newUser.setPhone(userDTO.getPhone());
-            newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-            newUser.setRole(Role.USER);
-            newUser.setAddress(userDTO.getAddress());
-            newUser.setHowFound(userDTO.getHowFound());
-            newUser.setJob(userDTO.getJob());
-            newUser.setWorkPlace(userDTO.getWorkPlace());
-            newUser.setGender(userDTO.getGender());
-            newUser.setStatus(true);
-
-            newUser = userRepository.saveAndFlush(newUser);
-
-            return new ResponseEntity<>(new Message(newUser, ErrorMessages.SUCCESSFUL_REGISTRATION, TypesResponse.SUCCESS), HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> updateUser(UserDTO userDTO) {
@@ -260,19 +302,24 @@ public class UserService {
 
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> changeStatus(UserDTO userDTO) {
+    public ResponseEntity<Message> changeStatus(Long userId) {
         try {
-            User user = userRepository.findById(userDTO.getId())
+            // Buscar el usuario por ID
+            User user = userRepository.findById(userId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
 
+            // Cambiar el estado del usuario
             boolean newStatus = !user.isStatus();
             user.setStatus(newStatus);
 
+            // Crear mensaje de éxito
             String statusMessage = newStatus ? "Activo" : "Inactivo";
             String successMessage = ErrorMessages.SUCCESFUL_CHANGE_STATUS + statusMessage;
 
+            // Guardar el usuario con el nuevo estado
             user = userRepository.saveAndFlush(user);
 
+            // Retornar respuesta exitosa
             return new ResponseEntity<>(new Message(user, successMessage, TypesResponse.SUCCESS), HttpStatus.OK);
         } catch (ValidationException e) {
             return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
@@ -280,5 +327,6 @@ public class UserService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 }

@@ -45,13 +45,23 @@ public class ActivityController {
         return activityService.findAllWorkshops();
     }
 
+    @GetMapping("/findAllActive/byOwner/{ownerid}")
+    public ResponseEntity<Message> getAllActiveByOwner(@PathVariable Long ownerid) {
+        return activityService.findAllActiveByOwner(ownerid);
+
+    }
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Message> findById(@PathVariable Long id) {
+        return activityService.findById(id);
+    }
+
     //buscar eventos por id
     @GetMapping("event/findById/{id}")
     public ResponseEntity<Message> getEventById(@PathVariable Long id) {
-        return activityService.findById(id);
+        return activityService.findByEventId(id);
     }
     //buscar talleres por id
-    @GetMapping("workShop/findById/{id}")
+    @GetMapping("workshop/findById/{id}")
     public ResponseEntity<Message> getWorkshopById(@PathVariable Long id) {
         return activityService.findWorkShopById(id);
     }
@@ -129,8 +139,8 @@ public class ActivityController {
         return activityImageService.updateImages(id, images);
     }
 
-    @PutMapping("/change-status")
-    public ResponseEntity<Message> changeStatus(@Validated @RequestBody ActivityDTO activityDTO) {
-        return activityService.changeStatus(activityDTO);
+    @PutMapping("/change-status/{id}")
+    public ResponseEntity<Message> changeStatus(@Validated @PathVariable Long id) {
+        return activityService.changeStatus(id);
     }
 }

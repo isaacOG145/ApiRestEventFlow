@@ -13,11 +13,15 @@ public class ErrorMessages {
     public static final String IS_NOT_CHECKER = "El usuario no es un checador";
     public static final String SAME_PASSWORD = "La nueva contraseña no puede ser igual a la anterior";
     public static final String INTERNAL_SERVER_ERROR = "Error interno del servidor";
+    public static final String INVITATION_NOT_FOUND = "No se encontro la invitacion";
+    public static final String INVITATIONS_NOT_FOUND = "No se encontraron invitaciones";
     public static final String ACTIVITY_NOT_FOUND = "No se encontro la actividad";
     public static final String ACTIVITIES_NOT_FOUND = "No se encontraron actividades";
+    public static final String ASSIGNMENT_NOT_FOUND = "No se encontró la asignacion";
     public static final String ASSIGNMENTS_NOT_FOUND = "No se encontraron asignaciones";
     public static final String IS_NOT_EVENT = "La actividad no es un evento";
     public static final String IS_NOT_WORKSHOP = "La actividad no es un evento";
+    public static final String USER_ALREADY_REGISTERED = "El usuario ya esta registrado en esta actividad";
     //sucessful
     public static final String SUCCESSFUL_REGISTRATION = "Regitro exitoso";
     public static final String SUCCESFUL_UPDATE = "Actualizacion exitosa";
