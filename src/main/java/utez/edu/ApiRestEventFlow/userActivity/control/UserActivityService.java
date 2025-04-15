@@ -190,6 +190,10 @@ public class UserActivityService {
             UserActivity invitation = userActivityRepository.findByToken(userActivityDTO.getToken())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.INVITATION_NOT_FOUND));
 
+            if(invitation.isVerified()){
+                return new ResponseEntity<>(new Message("Esta invitación ya fue usada", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            }
+
             invitation.setVerified(true);
 
             invitation = userActivityRepository.save(invitation);

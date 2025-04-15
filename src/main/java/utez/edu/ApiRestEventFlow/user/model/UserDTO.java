@@ -9,7 +9,7 @@ import java.sql.Date;
 
 public class UserDTO {
 
-    @NotNull(groups = {ChangeStatus.class, Modify.class, UpdatePassword.class}, message = ErrorMessages.ID_REQUIRED)
+    @NotNull(groups = {ChangeStatus.class, Modify.class,ModifyChecker.class, UpdatePassword.class}, message = ErrorMessages.ID_REQUIRED)
     private Long id;
     @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, RegisterUser.class}, message = ErrorMessages.NAME_REQUIRED)
     @Size(max = 50, message = "El nombre no puede tener más de 50 caracteres")
@@ -23,7 +23,7 @@ public class UserDTO {
     @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class, Modify.class, RegisterUser.class}, message = "El teléfono es obligatorio")
     @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "El teléfono no es válido")
     private String phone;
-    @NotBlank(groups = {RegisterAdmin.class, RegisterChecker.class,UpdatePassword.class, RegisterUser.class}, message = "La contraseña es obligatoria")
+    @NotBlank(groups = {RegisterAdmin.class, UpdatePassword.class}, message = "La contraseña es obligatoria")
     @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
     private String password;
     @NotBlank(groups = {RegisterAdmin.class}, message = "El nombre de la compañia es obligatorio")
@@ -192,13 +192,11 @@ public class UserDTO {
 
     public interface RegisterUser{}
 
-    public interface Modify {
-    }
+    public interface Modify {}
 
-    public interface UpdatePassword {
+    public interface  ModifyChecker{}
 
-    }
+    public interface UpdatePassword {}
 
-    public interface ChangeStatus {
-    }
+    public interface ChangeStatus {}
 }
