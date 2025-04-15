@@ -60,6 +60,11 @@ public class UserController {
         return userService.updateUser(userDTO);
     }
 
+    @PutMapping("/updateChecker")
+    public ResponseEntity<Message> updateChecker(@Validated(UserDTO.ModifyChecker.class)@RequestBody UserDTO userDTO) {
+        return userService.updateChecker(userDTO);
+    }
+
     @PutMapping("/updatePassword")
     public ResponseEntity<Message> updatePassword(@Validated(UserDTO.UpdatePassword.class)@RequestBody UserDTO userDTO) {
         return userService.updatePassword(userDTO);

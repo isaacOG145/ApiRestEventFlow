@@ -113,6 +113,12 @@ public class ActivityController {
         return activityService.updateWorkshop(activityDTO, newImages);
     }
 
+    // Endpoint para obtener actividades por dueño con información si tienen checadores
+    @GetMapping("/assignment-status/owner/{ownerId}")
+    public ResponseEntity<Message> getAssignmentStatusByOwner(@PathVariable Long ownerId) {
+        return activityService.findAssignedStatusByOwner(ownerId);
+    }
+
 
 
     // Agregar imágenes a un evento

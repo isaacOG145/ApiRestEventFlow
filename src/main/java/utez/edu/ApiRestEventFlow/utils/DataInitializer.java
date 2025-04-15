@@ -23,6 +23,8 @@ public class DataInitializer {
                 User superAdmin = new User();
                 superAdmin.setName("Super Admin");
                 superAdmin.setEmail("superadmin@example.com");
+                superAdmin.setPhone("7772002020");
+                superAdmin.setCompany("Utez");
                 superAdmin.setPassword(passwordEncoder.encode("ultraSecret"));
                 superAdmin.setRole(Role.ADMIN);
                 userRepository.saveAndFlush(superAdmin);

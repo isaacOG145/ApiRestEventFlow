@@ -34,6 +34,24 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     @Query("SELECT a FROM Activity a WHERE a.typeActivity = 'WORKSHOP' AND a.status = true")
     List<Activity> findActiveWorkshops();
 
+    @Query("""
+    SELECT a.id,
+           CASE 
+               WHEN COUNT(CASE WHEN u.role = 'CHECKER' AND ass.status = true THEN 1 ELSE null END) > 0 
+               THEN true 
+               ELSE false 
+           END AS asignado
+    FROM Activity a
+    LEFT JOIN Assignment ass ON ass.activity.id = a.id
+    LEFT JOIN User u ON u.id = ass.user.id
+    WHERE a.ownerActivity.id = :ownerId AND a.status = true
+    GROUP BY a.id
+    """)
+    List<Object[]> findActivityAssignmentStatusByOwner(@Param("ownerId") Long ownerId);
+
+
+
+
 
 
 

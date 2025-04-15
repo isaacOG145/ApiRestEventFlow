@@ -22,7 +22,7 @@ public class User {
     @Column(name = "last_name", columnDefinition = "VARCHAR(100)")
     private String lastName;
 
-    @Column(name = "email", columnDefinition = "VARCHAR(50)")
+    @Column(name = "email", columnDefinition = "VARCHAR(100)")
     private String email;
 
     @Column(name = "phone", columnDefinition = "VARCHAR(10)")
@@ -42,7 +42,7 @@ public class User {
     private boolean status;
 
     //admin
-    @Column(name = "company", columnDefinition = "VARCHAR(50)")
+    @Column(name = "company", columnDefinition = "VARCHAR(100)")
     private String company;
 
     //checador

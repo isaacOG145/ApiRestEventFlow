@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // Convertir el rol del usuario en una lista de GrantedAuthority
         List<GrantedAuthority> authorities = Collections.singletonList(
-                new SimpleGrantedAuthority(user.getRole().name())
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().name())
         );
 
         // Crear y retornar un UserDetails con los datos del usuario
