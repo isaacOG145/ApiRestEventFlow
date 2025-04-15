@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import utez.edu.ApiRestEventFlow.Role.Role;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
 import utez.edu.ApiRestEventFlow.activity.model.Activity;
+import utez.edu.ApiRestEventFlow.activity.model.ActivityAssignmentDTO;
 import utez.edu.ApiRestEventFlow.activity.model.ActivityDTO;
 import utez.edu.ApiRestEventFlow.activity.model.ActivityRepository;
 import utez.edu.ApiRestEventFlow.user.model.User;
@@ -83,7 +84,6 @@ public class ActivityService {
             return publicIdParts[0]; // Devolver solo el public_id sin la extensión
         }
 
-        // Si no se encuentra un public_id válido en la URL, devolver null o lanzar un error
         return null;
     }
 
@@ -415,7 +415,7 @@ public class ActivityService {
             newActivity.setTypeActivity(TypeActivity.WORKSHOP);
             newActivity.setFromActivity(fromActivity);
 
-            // 4. Asignar el mismo dueño que el evento padre
+            // 4. Asignar el mismo dueño y fecha que el evento padre
             newActivity.setOwnerActivity(fromActivity.getOwnerActivity());
 
             newActivity.setStatus(true);
@@ -594,6 +594,39 @@ public class ActivityService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findAssignedStatusByOwner(Long ownerId) {
+        try {
+            User owner = userRepository.findById(ownerId)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
+            validateAdmin(owner);
+
+            List<Object[]> rawData = activityRepository.findActivityAssignmentStatusByOwner(ownerId);
+
+            if (rawData.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.ACTIVITIES_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
+            }
+
+            List<ActivityAssignmentDTO> dtos = rawData.stream()
+                    .map(row -> new ActivityAssignmentDTO((Long) row[0], (Boolean) row[1]))
+                    .toList();
+
+            return new ResponseEntity<>(
+                    new Message(dtos, "Estado de asignaciones encontrado", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> changeStatus(Long activityId) {

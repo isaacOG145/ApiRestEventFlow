@@ -23,6 +23,8 @@ import utez.edu.ApiRestEventFlow.utils.TypesResponse;
 import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -241,6 +243,25 @@ public class AssignmentService {
         }
     }
 
+    private void validateCheckerAvailability(User checker, Activity activity) {
+        if (activity.getFromActivity() == null) {
+            // Es un evento
+            List<User> busy = userRepository.findCheckersUnAvailableForEvent(activity.getDate());
+            if (busy.contains(checker)) {
+                throw new ValidationException("El checador ya está asignado a otro evento en esta fecha.");
+            }
+        } else {
+            // Es un taller, hay que obtener la fecha del evento padre
+            LocalDate eventDate = activity.getFromActivity().getDate();
+            LocalTime timeWorkshop = activity.getTime();
+            List<User> busies = userRepository.findCheckersUnavailableForWorkshop(eventDate, timeWorkshop);
+            if (busies.contains(checker)) {
+                throw new ValidationException("El checador ya está asignado a otro taller en esta fecha y hora.");
+            }
+        }
+    }
+
+
     public ResponseEntity<Message> saveAssignment(AssignmentDTO assignmentDTO) {
         try {
             User checker = userRepository.findById(assignmentDTO.getUserId())
@@ -250,6 +271,8 @@ public class AssignmentService {
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
 
             validateChecker(checker);
+
+            validateCheckerAvailability(checker, activityAssignment);
 
             Assignment newAssignment = new Assignment();
             newAssignment.setUser(checker);
@@ -283,6 +306,7 @@ public class AssignmentService {
             );
         }
     }
+
 
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> updateAssignment(AssignmentDTO assignmentDTO) {

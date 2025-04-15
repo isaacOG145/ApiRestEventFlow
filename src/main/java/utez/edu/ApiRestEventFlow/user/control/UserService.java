@@ -35,13 +35,17 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    private void validateEmailAndPhone(UserDTO userDTO) {
+    private void validateEmail(UserDTO userDTO) {
 
         if(userRepository.existsByEmail(userDTO.getEmail())) {
-            throw new IllegalArgumentException(ErrorMessages.EMAIL_EXIST);
+            throw new ValidationException(ErrorMessages.EMAIL_EXIST);
         }
+
+    }
+
+    private void validatePhone(UserDTO userDTO) {
         if(userRepository.existsByPhone(userDTO.getPhone())) {
-            throw new IllegalArgumentException(ErrorMessages.PHONE_EXIST);
+            throw new ValidationException(ErrorMessages.PHONE_EXIST);
         }
     }
 
@@ -54,8 +58,6 @@ public class UserService {
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> saveUser(UserDTO userDTO) {
         try {
-
-
 
             if (userRepository.existsByEmail(userDTO.getEmail())) {
 
@@ -85,7 +87,7 @@ public class UserService {
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail());
         newUser.setPhone(userDTO.getPhone());
-        newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        newUser.setPassword(passwordEncoder.encode(userDTO.getEmail()));
         newUser.setRole(Role.USER);
         newUser.setBirthday(userDTO.getBirthday());
         newUser.setAddress(userDTO.getAddress());
@@ -104,8 +106,6 @@ public class UserService {
         // Actualizar los datos del usuario existente
         existingUser.setName(userDTO.getName());
         existingUser.setLastName(userDTO.getLastName());
-        existingUser.setPhone(userDTO.getPhone());
-        existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword())); // Si se actualiza la contraseña
         existingUser.setBirthday(userDTO.getBirthday());
         existingUser.setAddress(userDTO.getAddress());
         existingUser.setHowFound(userDTO.getHowFound());
@@ -201,7 +201,8 @@ public class UserService {
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> saveAdmin(UserDTO userDTO) {
         try {
-            validateEmailAndPhone(userDTO);
+            validateEmail(userDTO);
+            validatePhone(userDTO);
 
             User newUser = new User();
             newUser.setName(userDTO.getName());
@@ -226,7 +227,8 @@ public class UserService {
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> saveChecker(UserDTO userDTO) {
         try {
-            validateEmailAndPhone(userDTO);
+            validateEmail(userDTO);
+            validatePhone(userDTO);
 
             User sentByUser = userRepository.findById(userDTO.getSentByUser().getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
@@ -238,7 +240,7 @@ public class UserService {
             newUser.setLastName(userDTO.getLastName());
             newUser.setEmail(userDTO.getEmail());
             newUser.setPhone(userDTO.getPhone());
-            newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+            newUser.setPassword(passwordEncoder.encode(userDTO.getEmail()));
             newUser.setRole(Role.CHECKER);
             newUser.setStatus(true);
             newUser.setSentByUser(sentByUser);
@@ -261,8 +263,40 @@ public class UserService {
             User user = userRepository.findById(userDTO.getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
 
-            validateEmailAndPhone(userDTO);
+            validatePhone(userDTO);
 
+            if(userDTO.getPhone() != null) {
+                user.setPhone(userDTO.getPhone());
+            }
+
+            user = userRepository.saveAndFlush(user);
+
+            return new ResponseEntity<>(new Message(user, ErrorMessages.SUCCESFUL_UPDATE, TypesResponse.SUCCESS), HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<Message> updateChecker(UserDTO userDTO) {
+        try {
+            User user = userRepository.findById(userDTO.getId())
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
+
+            validatePhone(userDTO);
+            validateEmail(userDTO);
+
+            if(userDTO.getName() != null){
+                user.setName(userDTO.getName());
+            }
+            if(userDTO.getLastName() != null){
+                user.setLastName(userDTO.getLastName());
+            }
+            if (userDTO.getEmail() != null) {
+                user.setEmail(userDTO.getEmail());
+            }
             if(userDTO.getPhone() != null) {
                 user.setPhone(userDTO.getPhone());
             }
@@ -283,7 +317,7 @@ public class UserService {
             User user = userRepository.findById(userDTO.getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
 
-            if (user.getPassword().equals(userDTO.getPassword())) {
+            if (passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
                 throw new ValidationException(ErrorMessages.SAME_PASSWORD);
             }
 
