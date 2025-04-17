@@ -1,15 +1,21 @@
 package utez.edu.ApiRestEventFlow.security.dto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import utez.edu.ApiRestEventFlow.security.JwtUtil;
 import utez.edu.ApiRestEventFlow.security.UserDetailsServiceImpl;
 import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserRepository;
+import utez.edu.ApiRestEventFlow.utils.Message;
+import utez.edu.ApiRestEventFlow.utils.TypesResponse;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = {"*"}, methods = {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
@@ -29,27 +35,73 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest authRequest) throws Exception {
-        try {
-            // Autenticar al usuario
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
-        } catch (BadCredentialsException e) {
-            throw new Exception("Usuario o contraseña incorrectos", e);
+    public ResponseEntity<Message> login(@RequestBody AuthRequest authRequest) {
+        // Buscar al usuario por correo
+        Optional<User> optionalUser = userRepository.findByEmail(authRequest.getEmail());
+
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(401).body(
+                    new Message("Credenciales incorrectas", TypesResponse.ERROR)
+            );
         }
 
-        // Obtener los detalles del usuario
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
-        final String jwt = jwtUtil.generateToken(userDetails);
+        User user = optionalUser.get();
 
-        // Obtener el usuario desde la base de datos
-        User user = userRepository.findByEmail(authRequest.getEmail())
-                .orElseThrow(() -> new Exception("Usuario no encontrado"));
+        // Verificar si está activo
+        if (!user.isStatus()) {
+            return ResponseEntity.status(403).body(
+                    new Message("Usuario inactivo. Contacta al administrador.", TypesResponse.WARNING)
+            );
+        }
 
-        // Obtener el tiempo de expiración del token
+        // Intentar autenticar con email y password
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword())
+            );
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body(
+                    new Message("Credenciales incorrectas", TypesResponse.ERROR)
+            );
+        }
+
+        // Generar token y respuesta
+        UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
+        String jwt = jwtUtil.generateToken(userDetails);
         long expirationTime = jwtUtil.getExpirationTime();
 
-        // Crear y retornar la respuesta con el rol
-        return new AuthResponse(jwt, user.getId(), user.getEmail(), expirationTime, user.getRole().name());
+        AuthResponse authResponse = new AuthResponse(jwt, user.getId(), user.getEmail(), expirationTime, user.getRole().name());
+
+        return ResponseEntity.ok(
+                new Message(authResponse, "Inicio de sesión exitoso", TypesResponse.SUCCESS)
+        );
     }
+
+
+
+
+    @GetMapping("/profile")
+    public ResponseEntity<AuthResponse> getProfile(@RequestHeader("Authorization") String token) {
+        // Remover el prefijo "Bearer "
+        String jwt = token.replace("Bearer ", "");
+
+        // Extraer el email desde el JWT
+        String email = jwtUtil.extractUsername(jwt);
+
+        // Buscar al usuario en la base de datos
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // Crear la respuesta
+        AuthResponse response = new AuthResponse(
+                null,
+                user.getId(),
+                user.getEmail(),
+                jwtUtil.getExpirationTime(),
+                user.getRole().name()
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
 }

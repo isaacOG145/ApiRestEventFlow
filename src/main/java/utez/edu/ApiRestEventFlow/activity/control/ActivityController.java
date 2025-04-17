@@ -118,7 +118,10 @@ public class ActivityController {
     public ResponseEntity<Message> getAssignmentStatusByOwner(@PathVariable Long ownerId) {
         return activityService.findAssignedStatusByOwner(ownerId);
     }
-
+    @GetMapping("/users/{userId}/workshops")
+    public ResponseEntity<Message> getUserAvailableWorkshops(@PathVariable Long userId) {
+        return activityService.getWorkshopsForRegisteredUser(userId);
+    }
 
 
     // Agregar imágenes a un evento

@@ -49,6 +49,21 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     """)
     List<Object[]> findActivityAssignmentStatusByOwner(@Param("ownerId") Long ownerId);
 
+    @Query("SELECT w FROM Activity w " +
+            "JOIN UserActivity ua ON w.fromActivity.id = ua.activity.id " +
+            "WHERE ua.user.id = :userId " +
+            "AND w.typeActivity = 'WORKSHOP' " +
+            "AND w.status = true " +
+            "AND ua.verified = true")
+    List<Activity> findWorkshopsByUserEventRegistration(@Param("userId") Long userId);
+
+    // Query para encontrar talleres activos asociados a una lista de eventos
+    @Query("SELECT a FROM Activity a " +
+            "WHERE a.fromActivity.id IN :eventIds " +
+            "AND a.typeActivity = 'WORKSHOP' " +
+            "AND a.status = true")
+    List<Activity> findWorkshopsByEventIdsAndActive(@Param("eventIds") List<Long> eventIds);
+
 
 
 

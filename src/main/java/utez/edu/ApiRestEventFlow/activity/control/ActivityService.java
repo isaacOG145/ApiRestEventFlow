@@ -11,12 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import utez.edu.ApiRestEventFlow.Role.Role;
 import utez.edu.ApiRestEventFlow.Role.TypeActivity;
-import utez.edu.ApiRestEventFlow.activity.model.Activity;
-import utez.edu.ApiRestEventFlow.activity.model.ActivityAssignmentDTO;
-import utez.edu.ApiRestEventFlow.activity.model.ActivityDTO;
-import utez.edu.ApiRestEventFlow.activity.model.ActivityRepository;
+import utez.edu.ApiRestEventFlow.activity.model.*;
 import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserRepository;
+import utez.edu.ApiRestEventFlow.userActivity.model.UserActivity;
+import utez.edu.ApiRestEventFlow.userActivity.model.UserActivityRepository;
 import utez.edu.ApiRestEventFlow.utils.Message;
 import utez.edu.ApiRestEventFlow.utils.TypesResponse;
 import utez.edu.ApiRestEventFlow.validation.ErrorMessages;
@@ -31,14 +30,16 @@ public class ActivityService {
 
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
+    private final UserActivityRepository userActivityRepository;
 
     @Autowired
     private Cloudinary cloudinary;
 
     @Autowired
-    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository) {
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository, UserActivityRepository userActivityRepository) {
         this.activityRepository = activityRepository;
         this.userRepository = userRepository;
+        this.userActivityRepository = userActivityRepository;
     }
 
     private void validateAdmin(User owner) {
@@ -624,6 +625,64 @@ public class ActivityService {
             return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> getWorkshopsForRegisteredUser(Long userId) {
+        try {
+            // 1. Validar usuario existente y activo
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
+
+            if (!user.isStatus()) {
+                throw new ValidationException("El usuario está inactivo");
+            }
+
+            // 2. Obtener eventos donde el usuario está registrado (activos y verificados)
+            List<UserActivity> userEvents = userActivityRepository.findAllByUserIdAndStatusAndVerified(
+                    userId,
+                    true
+            );
+
+            if (userEvents.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message("No esta registrado a eventos", TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
+            }
+
+            // 3. Obtener IDs de eventos y buscar talleres asociados
+            List<Long> eventIds = userEvents.stream()
+                    .map(ua -> ua.getActivity().getId())
+                    .toList();
+
+            List<Activity> workshops = activityRepository.findWorkshopsByEventIdsAndActive(eventIds);
+
+            // 4. Construir respuesta con cupos disponibles
+            List<WorkshopResponseDTO> response = workshops.stream()
+                    .map(workshop -> {
+                        int registered = userActivityRepository.countValidRegistrationsByActivityId (workshop.getId());
+                        int available = workshop.getQuota() - registered;
+                        return new WorkshopResponseDTO(workshop, available);
+                    })
+                    .toList();
+
+            return new ResponseEntity<>(
+                    new Message(response, "Talleres disponibles", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
         }
     }
 
