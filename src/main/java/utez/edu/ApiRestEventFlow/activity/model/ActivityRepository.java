@@ -64,6 +64,15 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
             "AND a.status = true")
     List<Activity> findWorkshopsByEventIdsAndActive(@Param("eventIds") List<Long> eventIds);
 
+    @Query("""
+    SELECT a 
+    FROM Activity a 
+    JOIN Assignment ass ON ass.activity.id = a.id 
+    WHERE ass.user.id = :userId AND a.status = true AND ass.status = true
+""")
+    List<Activity> findActivitiesByUserAssignments(@Param("userId") Long userId);
+
+
 
 
 

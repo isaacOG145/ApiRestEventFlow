@@ -4,8 +4,10 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,7 +89,6 @@ public class ActivityService {
 
         return null;
     }
-
 
 
 
@@ -181,6 +182,32 @@ public class ActivityService {
                     HttpStatus.OK
             );
         } catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message("Error interno del servidor", TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findActivitiesByUserAssignments(Long  userId) {
+        try{
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
+
+            List<Activity> activities = activityRepository.findActivitiesByUserAssignments(userId);
+
+            return new ResponseEntity<>(
+                    new Message(activities, "Eventos encontrado", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+
+        }catch (ValidationException e) {
             return new ResponseEntity<>(
                     new Message(e.getMessage(), TypesResponse.WARNING),
                     HttpStatus.BAD_REQUEST

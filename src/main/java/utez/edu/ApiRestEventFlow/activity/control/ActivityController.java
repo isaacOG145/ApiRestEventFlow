@@ -55,6 +55,11 @@ public class ActivityController {
         return activityService.findById(id);
     }
 
+    @GetMapping("/assignment/findByChecker/{id}")
+    public ResponseEntity<Message> findAssignmentByChecker(@PathVariable Long id) {
+        return activityService.findActivitiesByUserAssignments(id);
+    }
+
     //buscar eventos por id
     @GetMapping("event/findById/{id}")
     public ResponseEntity<Message> getEventById(@PathVariable Long id) {
