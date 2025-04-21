@@ -22,6 +22,7 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Long
     List<UserActivity> findAllByUserId(Long userId);
     List<UserActivity> findAllByActivityId(Long activityId);
     Optional<UserActivity> findByUserIdAndActivityId(Long userId, Long activityId);
+    Optional<UserActivity> findByUserIdAndActivityIdAndStatusTrue(Long userId, Long activityId);
 
     // Query para encontrar registros de usuario específicos (activos y verificados)
     @Query("SELECT ua FROM UserActivity ua " +
@@ -33,4 +34,16 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Long
             @Param("status") boolean status
 
     );
+
+    // Query para encontrar registros de usuario específicos (activos y verificados)
+    @Query("SELECT ua FROM UserActivity ua " +
+            "WHERE ua.user.id = :userId " +
+            "AND ua.status = true " ) // Solo eventos
+    List<UserActivity> findAllActivityInscriptionByUserId(
+            @Param("userId") Long userId,
+            @Param("status") boolean status
+
+    );
+
+
 }

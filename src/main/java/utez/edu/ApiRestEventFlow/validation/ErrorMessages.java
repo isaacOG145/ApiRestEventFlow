@@ -22,6 +22,7 @@ public class ErrorMessages {
     public static final String IS_NOT_EVENT = "La actividad no es un evento";
     public static final String IS_NOT_WORKSHOP = "La actividad no es un evento";
     public static final String USER_ALREADY_REGISTERED = "El usuario ya esta registrado en esta actividad";
+    public static final String USER_ALREADY_REGISTERED_WORKSHOP = "El usuario ya esta registrado en este taller";
     //sucessful
     public static final String SUCCESSFUL_REGISTRATION = "Regitro exitoso";
     public static final String SUCCESFUL_UPDATE = "Actualizacion exitosa";

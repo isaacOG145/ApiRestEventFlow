@@ -629,6 +629,50 @@ public class ActivityService {
     }
 
     @Transactional(readOnly = true)
+    public ResponseEntity<Message> findInscriptionsByUserId(Long userId) {
+        try{
+            // 1. Validar usuario existente y activo
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
+
+            if (!user.isStatus()) {
+                throw new ValidationException("El usuario está inactivo");
+            }
+
+            List<UserActivity> userActivities = userActivityRepository.findAllActivityInscriptionByUserId(userId,true);
+            if (userActivities.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message("No esta registrado a eventos", TypesResponse.WARNING),
+                        HttpStatus.OK
+                );
+            }
+            // 3. Extraer las actividades desde las inscripciones
+            List<Activity> activities = userActivities.stream()
+                    .map(UserActivity::getActivity)
+                    .filter(Activity::isStatus)    // <— aquí filtras por status == true
+                    .toList();
+
+            // 4. Devolver actividades en la respuesta
+            return new ResponseEntity<>(
+                    new Message(activities, "Inscripciones encontradas", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+
+
+        }catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    @Transactional(readOnly = true)
     public ResponseEntity<Message> getWorkshopsForRegisteredUser(Long userId) {
         try {
             // 1. Validar usuario existente y activo
