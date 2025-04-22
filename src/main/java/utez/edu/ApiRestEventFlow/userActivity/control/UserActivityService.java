@@ -213,7 +213,7 @@ public class UserActivityService {
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findByActivity(Long activityId) {
         try {
-            List<UserActivity> activityUsers = userActivityRepository.findAllByActivityId(activityId);
+            List<UserActivity> activityUsers = userActivityRepository.findAllByActivityIdAndStatusTrue(activityId);
 
             if (activityUsers.isEmpty()) {
                 return new ResponseEntity<>(

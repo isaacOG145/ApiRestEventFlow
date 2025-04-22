@@ -20,7 +20,7 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Long
     // Métodos existentes (se mantienen igual)
     Optional<UserActivity> findByToken(String token);
     List<UserActivity> findAllByUserId(Long userId);
-    List<UserActivity> findAllByActivityId(Long activityId);
+    List<UserActivity> findAllByActivityIdAndStatusTrue(Long activityId);
     Optional<UserActivity> findByUserIdAndActivityId(Long userId, Long activityId);
     Optional<UserActivity> findByUserIdAndActivityIdAndStatusTrue(Long userId, Long activityId);
 
