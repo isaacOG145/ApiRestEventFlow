@@ -1,6 +1,8 @@
 package utez.edu.ApiRestEventFlow.userActivity.control;
 
 import jakarta.validation.ValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import utez.edu.ApiRestEventFlow.activity.model.Activity;
 import utez.edu.ApiRestEventFlow.activity.model.ActivityDTO;
 import utez.edu.ApiRestEventFlow.activity.model.ActivityRepository;
+import utez.edu.ApiRestEventFlow.security.JwtRequestFilter;
 import utez.edu.ApiRestEventFlow.user.model.User;
 import utez.edu.ApiRestEventFlow.user.model.UserRepository;
 import utez.edu.ApiRestEventFlow.userActivity.model.UserActivity;
@@ -31,7 +34,6 @@ public class UserActivityService {
     private final UserRepository userRepository;
 
     @Autowired
-
     public UserActivityService(UserActivityRepository userActivityRepository, ActivityRepository activityRepository, UserRepository userRepository) {
         this.userActivityRepository = userActivityRepository;
         this.activityRepository = activityRepository;
@@ -53,6 +55,38 @@ public class UserActivityService {
         }
     }
 
+    @Transactional(readOnly = true)
+    public ResponseEntity<Message> findByUserAndActivity(Long userId, Long activityId) {
+        try {
+            Optional<UserActivity> userActivityOptional = userActivityRepository.findByUserIdAndActivityIdAndStatusTrue(userId, activityId);
+
+            if (userActivityOptional.isEmpty()) {
+                return new ResponseEntity<>(
+                        new Message(ErrorMessages.INVITATION_NOT_FOUND, TypesResponse.WARNING),
+                        HttpStatus.NOT_FOUND
+                );
+            }
+
+            return new ResponseEntity<>(
+                    new Message(userActivityOptional, "Inscripción encontrada", TypesResponse.SUCCESS),
+                    HttpStatus.OK
+            );
+        } catch (ValidationException e) {
+
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<Message> registerForEvent(UserActivityDTO userActivityDTO) {
         try {
@@ -65,7 +99,7 @@ public class UserActivityService {
                     .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
 
             // Verificamos si el usuario ya está inscrito a la actividad
-            Optional<UserActivity> existingUserActivity = userActivityRepository.findByUserIdAndActivityId(userActivityDTO.getUserId(), userActivityDTO.getActivityId());
+            Optional<UserActivity> existingUserActivity = userActivityRepository.findByUserIdAndActivityIdAndStatusTrue(userActivityDTO.getUserId(), userActivityDTO.getActivityId());
 
             if (existingUserActivity.isPresent()) {
                 return new ResponseEntity<>(new Message(ErrorMessages.USER_ALREADY_REGISTERED, TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
@@ -75,8 +109,8 @@ public class UserActivityService {
             UserActivity userActivity = new UserActivity();
             userActivity.setUser(user);
             userActivity.setActivity(activity);
-            userActivity.setVerified(false);  // Estado por defecto: no verificado
-            userActivity.setStatus(true);     // Estado de inscripción activo
+            userActivity.setVerified(false);
+            userActivity.setStatus(true);
 
             // Generar un token único para la inscripción
             String token = UUID.randomUUID().toString();
@@ -93,6 +127,58 @@ public class UserActivityService {
             return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<Message> registerForWorkshop(UserActivityDTO userActivityDTO) {
+        try {
+            // Verificamos que el usuario existe
+            User user = userRepository.findById(userActivityDTO.getUserId())
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.USER_NOT_FOUND));
+
+            // Verificamos que la actividad (taller) existe
+            Activity workshop = activityRepository.findById(userActivityDTO.getActivityId())
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.ACTIVITY_NOT_FOUND));
+
+            // Verificamos si el usuario ya está inscrito
+            Optional<UserActivity> existingUserActivity = userActivityRepository.findByUserIdAndActivityIdAndStatusTrue(
+                    userActivityDTO.getUserId(), userActivityDTO.getActivityId());
+
+            if (existingUserActivity.isPresent()) {
+                return new ResponseEntity<>(new Message(ErrorMessages.USER_ALREADY_REGISTERED_WORKSHOP, TypesResponse.WARNING),
+                        HttpStatus.BAD_REQUEST);
+            }
+
+            // Verificamos si el taller ya alcanzó su capacidad máxima
+            int registeredCount = userActivityRepository.countValidRegistrationsByActivityId(workshop.getId());
+            if (registeredCount >= workshop.getQuota()) {
+                return new ResponseEntity<>(new Message("El taller ya se encuentra lleno", TypesResponse.WARNING),
+                        HttpStatus.BAD_REQUEST);
+            }
+
+            // Crear nueva inscripción
+            UserActivity userActivity = new UserActivity();
+            userActivity.setUser(user);
+            userActivity.setActivity(workshop);
+            userActivity.setVerified(false);
+            userActivity.setStatus(true);
+
+            String token = UUID.randomUUID().toString();
+            userActivity.setToken(token);
+
+            UserActivity savedUserActivity = userActivityRepository.saveAndFlush(userActivity);
+
+            return new ResponseEntity<>(new Message(savedUserActivity, ErrorMessages.SUCCESSFUL_REGISTRATION,
+                    TypesResponse.SUCCESS), HttpStatus.OK);
+
+        } catch (ValidationException e) {
+            return new ResponseEntity<>(new Message(e.getMessage(), TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 
     @Transactional(readOnly = true)
@@ -127,7 +213,7 @@ public class UserActivityService {
     @Transactional(readOnly = true)
     public ResponseEntity<Message> findByActivity(Long activityId) {
         try {
-            List<UserActivity> activityUsers = userActivityRepository.findAllByActivityId(activityId);
+            List<UserActivity> activityUsers = userActivityRepository.findAllByActivityIdAndStatusTrue(activityId);
 
             if (activityUsers.isEmpty()) {
                 return new ResponseEntity<>(
@@ -184,7 +270,7 @@ public class UserActivityService {
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<Message> confirmateInvitation(UserActivityDTO userActivityDTO) {
+    public ResponseEntity<Message> confirmInvitation(UserActivityDTO userActivityDTO) {
         try{
 
             UserActivity invitation = userActivityRepository.findByToken(userActivityDTO.getToken())
@@ -214,8 +300,34 @@ public class UserActivityService {
 
     }
 
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<Message> cancelInvitation(UserActivityDTO userActivity) {
+        try{
 
+            UserActivity invitation = userActivityRepository.findById(userActivity.getId())
+                    .orElseThrow(() -> new ValidationException(ErrorMessages.INVITATION_NOT_FOUND));
 
+            if(invitation.isVerified()){
+                return new ResponseEntity<>(new Message("Esta invitación ya fue usada", TypesResponse.WARNING), HttpStatus.BAD_REQUEST);
+            }
 
+            invitation.setStatus(false);
+
+            invitation = userActivityRepository.save(invitation);
+
+            return new ResponseEntity<>(new Message(invitation, ErrorMessages.SUCCESFUL_UPDATE, TypesResponse.SUCCESS), HttpStatus.OK);
+
+        }catch (ValidationException e) {
+            return new ResponseEntity<>(
+                    new Message(e.getMessage(), TypesResponse.WARNING),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    new Message(ErrorMessages.INTERNAL_SERVER_ERROR, TypesResponse.ERROR),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
 
 }

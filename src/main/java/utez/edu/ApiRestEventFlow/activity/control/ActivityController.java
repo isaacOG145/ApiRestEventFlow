@@ -55,6 +55,11 @@ public class ActivityController {
         return activityService.findById(id);
     }
 
+    @GetMapping("/assignment/findByChecker/{id}")
+    public ResponseEntity<Message> findAssignmentByChecker(@PathVariable Long id) {
+        return activityService.findActivitiesByUserAssignments(id);
+    }
+
     //buscar eventos por id
     @GetMapping("event/findById/{id}")
     public ResponseEntity<Message> getEventById(@PathVariable Long id) {
@@ -119,6 +124,15 @@ public class ActivityController {
         return activityService.findAssignedStatusByOwner(ownerId);
     }
 
+    @GetMapping("/users/{userId}/activities")
+    public ResponseEntity<Message> getActivitiesByUserId(@PathVariable Long userId) {
+        return activityService.findInscriptionsByUserId(userId);
+    }
+
+    @GetMapping("/users/{userId}/workshops")
+    public ResponseEntity<Message> getUserAvailableWorkshops(@PathVariable Long userId) {
+        return activityService.getWorkshopsForRegisteredUser(userId);
+    }
 
 
     // Agregar imágenes a un evento

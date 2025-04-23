@@ -29,7 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // Buscar al usuario por su correo electrónico
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(ErrorMessages.USER_NOT_FOUND));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado o inactivo"));
+
 
         // Convertir el rol del usuario en una lista de GrantedAuthority
         List<GrantedAuthority> authorities = Collections.singletonList(

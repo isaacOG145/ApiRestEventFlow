@@ -81,7 +81,7 @@ public class UserService {
     }
 
     private ResponseEntity<Message> registerNewUser(UserDTO userDTO) {
-        // Crear un nuevo usuario y guardarlo en la base de datos
+
         User newUser = new User();
         newUser.setName(userDTO.getName());
         newUser.setLastName(userDTO.getLastName());

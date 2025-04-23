@@ -27,6 +27,7 @@ public class DataInitializer {
                 superAdmin.setCompany("Utez");
                 superAdmin.setPassword(passwordEncoder.encode("ultraSecret"));
                 superAdmin.setRole(Role.ADMIN);
+                superAdmin.setStatus(true);
                 userRepository.saveAndFlush(superAdmin);
             }
 
