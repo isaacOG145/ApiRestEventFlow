@@ -25,12 +25,6 @@ public class UserActivityController {
         this.userActivityService = userActivityService;
     }
 
-    //buscar todos
-    @GetMapping("/findAll")
-    public ResponseEntity<Message> getAllActivities() {
-        return userActivityService.findAll();
-    }
-
     @GetMapping("/findByActivity/{id}")
     public ResponseEntity<Message> findByActivity(@PathVariable Long id) {
         return userActivityService.findByActivity(id);

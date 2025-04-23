@@ -37,10 +37,27 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/activity/findActiveEvents").permitAll()
                         .requestMatchers("/profile").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN", "ROLE_USER", "ROLE_CHECKER")
                         .requestMatchers("/user/findId/**").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN", "ROLE_USER", "ROLE_CHECKER")
                         .requestMatchers("/user/updateUser").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN", "ROLE_USER", "ROLE_CHECKER")
                         .requestMatchers("/user/updatePassword").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN", "ROLE_USER", "ROLE_CHECKER")
+                        .requestMatchers("/activity/saveEvent").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/activity/updateEvent").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/activity/saveWorkshop").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/activity/updateWorkshop").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/activity/assignment-status/owner/**").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/assignment/saveAssignment").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/assignment/update").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPERADMIN")
+                        .requestMatchers("/assignment/change-status/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPERADMIN")
+                        .requestMatchers("/user/findByBoss/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPERADMIN")
+                        .requestMatchers("/user/findByBoss/**").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/user/saveChecker").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/user/updateChecker").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
+                        .requestMatchers("/user-activities/confirm").hasAnyAuthority("ROLE_CHECKER")
+                        .requestMatchers("/user-activities/findByActivity/**").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN","ROLE_CHECKER")
+
+
                         .anyRequest().permitAll()
 
                 ).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

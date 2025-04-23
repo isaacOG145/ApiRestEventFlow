@@ -34,7 +34,6 @@ public class AssignmentController {
 
     @GetMapping("/findAssignmentsByActivity/{id}")
     public ResponseEntity<Message> findAssignmentsByActivity(@PathVariable Long id) {
-        // Llamamos al servicio para obtener las asignaciones del evento y talleres
         return assignmentService.findAssignmentsByActivity(id);
     }
 
