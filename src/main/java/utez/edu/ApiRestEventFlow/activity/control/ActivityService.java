@@ -43,12 +43,18 @@ public class ActivityService {
         this.userRepository = userRepository;
         this.userActivityRepository = userActivityRepository;
     }
-
-    private void validateAdmin(User owner) {
-        if (!owner.getRole().equals(Role.ADMIN)) {
+    /*
+    *  private void validateAdmin(User owner) {
+        if (!owner.getRole().equals(Role.SUPERADMIN)) {
             throw new ValidationException(ErrorMessages.IS_NOT_ADMIM);
-        }
-    }
+        }else if(!owner.getRole().equals(Role.ADMIN)){
+            throw new ValidationException(ErrorMessages.IS_NOT_ADMIM);
+        }}
+    * */
+
+
+
+
 
     private void validateEvent(Activity activity) {
         if (!activity.getTypeActivity().equals(TypeActivity.EVENT)) {
@@ -139,7 +145,7 @@ public class ActivityService {
             // Validar que el owner existe y es ADMIN
             User owner = userRepository.findById(ownerId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
-            validateAdmin(owner);
+            //validateAdmin(owner);
 
             List<Activity> activities = activityRepository.findByOwnerActivityIdAndActive(ownerId);
 
@@ -291,7 +297,7 @@ public class ActivityService {
             // Validar que el owner existe y es ADMIN
             User owner = userRepository.findById(ownerId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
-            validateAdmin(owner);
+            //validateAdmin(owner);
 
             // Buscar solo eventos (TypeActivity.EVENT)
             List<Activity> events = activityRepository.findEventsByOwner(ownerId);
@@ -327,7 +333,7 @@ public class ActivityService {
             // Validar que el owner existe y es ADMIN
             User owner = userRepository.findById(ownerId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
-            validateAdmin(owner);
+            //validateAdmin(owner);
 
             // Buscar solo talleres (TypeActivity.WORKSHOP)
             List<Activity> workshops = activityRepository.findWorkshopsByOwner(ownerId);
@@ -387,7 +393,7 @@ public class ActivityService {
             User owner = userRepository.findById(activityDTO.getOwnerActivity().getId())
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
 
-            validateAdmin(owner);
+            //validateAdmin(owner);
             validateImg(activityDTO);
 
             Activity newActivity = new Activity();
@@ -628,7 +634,7 @@ public class ActivityService {
         try {
             User owner = userRepository.findById(ownerId)
                     .orElseThrow(() -> new ValidationException(ErrorMessages.SENT_BY_USER_NOT_FOUND));
-            validateAdmin(owner);
+            //validateAdmin(owner);
 
             List<Object[]> rawData = activityRepository.findActivityAssignmentStatusByOwner(ownerId);
 
