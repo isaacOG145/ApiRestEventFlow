@@ -51,7 +51,6 @@ public class SecurityConfig {
                         .requestMatchers("/assignment/update").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPERADMIN")
                         .requestMatchers("/assignment/change-status/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPERADMIN")
                         .requestMatchers("/user/findByBoss/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_SUPERADMIN")
-                        .requestMatchers("/user/findByBoss/**").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
                         .requestMatchers("/user/saveChecker").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
                         .requestMatchers("/user/updateChecker").hasAnyAuthority("ROLE_SUPERADMIN", "ROLE_ADMIN")
                         .requestMatchers("/user-activities/confirm").hasAnyAuthority("ROLE_CHECKER")
@@ -69,7 +68,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("*")); // Permitir todos los orígenes mediante patrones
+        configuration.setAllowedOriginPatterns(List.of("https://staging.de5flgkeecct6.amplifyapp.com")); // Permitir todos los orígenes mediante patrones
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(List.of("*")); // Permitir todos los encabezados
         configuration.setAllowCredentials(true); // Permitir credenciales
